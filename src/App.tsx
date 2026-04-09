@@ -1,8 +1,11 @@
+import DashboardPage from "./pages/DashboardPage/DashboardPage"
+import AppLayout from "./components/layout/AppLayout"
+
 function App() {
   return (
-    <>
-      <div className="text-3xl font-bold underline">Crono Dashboard Test</div>
-    </>
+    <AppLayout>
+      <DashboardPage />
+    </AppLayout>
   )
 }
 
