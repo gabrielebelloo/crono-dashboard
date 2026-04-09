@@ -1,12 +1,12 @@
-import AnalyticsIcon from "../../../assets/icons/analytics.svg?react";
-import DashboardIcon from "../../../assets/icons/dashboard.svg?react";
-import DealsIcon from "../../../assets/icons/deals.svg?react";
-import FindNewIcon from "../../../assets/icons/find-new.svg?react";
-import InboxIcon from "../../../assets/icons/inbox.svg?react";
-import ListsIcon from "../../../assets/icons/lists.svg?react";
-import SequencesIcon from "../../../assets/icons/sequences.svg?react";
-import TasksIcon from "../../../assets/icons/tasks.svg?react";
-import TemplatesIcon from "../../../assets/icons/templates.svg?react";
+import AnalyticsIcon from "../../../assets/sidebar-icons/analytics.svg?react";
+import DashboardIcon from "../../../assets/sidebar-icons/dashboard.svg?react";
+import DealsIcon from "../../../assets/sidebar-icons/deals.svg?react";
+import FindNewIcon from "../../../assets/sidebar-icons/find-new.svg?react";
+import InboxIcon from "../../../assets/sidebar-icons/inbox.svg?react";
+import ListsIcon from "../../../assets/sidebar-icons/lists.svg?react";
+import SequencesIcon from "../../../assets/sidebar-icons/sequences.svg?react";
+import TasksIcon from "../../../assets/sidebar-icons/tasks.svg?react";
+import TemplatesIcon from "../../../assets/sidebar-icons/templates.svg?react";
 
 export const sidebarIcons = {
   dashboard: DashboardIcon,
