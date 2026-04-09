@@ -1,4 +1,4 @@
-import Sidebar from './Sidebar/Sidebar'
+import Sidebar from "./Sidebar/Sidebar";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -6,5 +6,5 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <Sidebar />
       <main>{children}</main>
     </div>
-  )
+  );
 }

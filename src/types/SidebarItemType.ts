@@ -1,4 +1,7 @@
+import type { sidebarIcons } from "../components/layout/Sidebar/sidebarIcons";
+
 export type SidebarItemType = {
-  label: string
-  href: string
-}
+  id: keyof typeof sidebarIcons;
+  label: string;
+  href: string;
+};

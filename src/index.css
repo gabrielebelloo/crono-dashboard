@@ -1,8 +1,10 @@
 @config "../tailwind.config.ts";
-@import 'tailwindcss';
+@import "tailwindcss";
 
 :root {
   --main-color: #1ebab2;
+  --secondary-color: #0a9b94;
+  --gray-color: #7a8395;
   --bg-color: #f5f7f9;
   --border-color: #e6e9f2;
 }
