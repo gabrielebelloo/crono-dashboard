@@ -15,9 +15,7 @@ export default function SidebarItem({ id, label, href, collapsed = false }: Prop
       title={label}
     >
       <Icon className={`${textColor} shrink-0`} aria-hidden="true" />
-      {collapsed && (
-        <span className="sr-only">{label}</span>
-      )}
+      {collapsed && <span className="sr-only">{label}</span>}
       {!collapsed && (
         <span className={`${textColor} font-medium text-sm leading-[18px]`}>{label}</span>
       )}

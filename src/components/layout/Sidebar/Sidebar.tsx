@@ -59,9 +59,7 @@ export default function Sidebar() {
         </button>
       </div>
 
-      <nav
-        className={`flex flex-col gap-[8px] ${collapsed ? "items-center px-0" : ""}`}
-      >
+      <nav className={`flex flex-col gap-[8px] ${collapsed ? "items-center px-0" : ""}`}>
         {sidebarItems.map((item) => (
           <SidebarItem key={item.href} {...item} collapsed={collapsed} />
         ))}
@@ -72,15 +70,16 @@ export default function Sidebar() {
           <div className="text-sm font-medium">Trial ends in 2 days</div>
           <button className="flex items-center bg-yellow-500 py-[4px] px-[8px] gap-[4px] text-[12px] text-white rounded-[8px] cursor-pointer">
             Upgrade plan
-            <GiftIcon />  
+            <GiftIcon />
           </button>
         </div>
       )}
-      
 
       <div className="min-h-0 flex-1" aria-hidden="true" />
 
-      <div className={`flex h-[72px] w-full shrink-0 items-center justify-center border-t border-border px-3 gap-2 ${collapsed ? "py-2" : "py-[14px]"}`}>
+      <div
+        className={`flex h-[72px] w-full shrink-0 items-center justify-center border-t border-border px-3 gap-2 ${collapsed ? "py-2" : "py-[14px]"}`}
+      >
         <img
           width={32}
           src="/company-logo.png"
@@ -93,9 +92,7 @@ export default function Sidebar() {
             <div className="text-sm text-gray">Sales</div>
           </div>
         )}
-        {collapsed && (
-          <span className="sr-only">William Robertson, Sales</span>
-        )}
+        {collapsed && <span className="sr-only">William Robertson, Sales</span>}
       </div>
     </aside>
   );
