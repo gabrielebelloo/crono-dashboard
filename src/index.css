@@ -16,6 +16,8 @@
   --kpi-tile-label-color: var(--gray-hover-1-color);
   --avatar-ring-color: #d5e0f0;
   --stack-blue-color: #3b85e8;
+  /* KPI info tooltip / pop-up (Figma Main/Dark) */
+  --popup-dark-color: #151618;
   /* Today’s tasks — tile fills + metric colors (Figma) */
   --task-overdue-bg: #ffe9e9;
   --task-overdue-text: #ed4c5e;

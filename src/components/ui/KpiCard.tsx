@@ -30,7 +30,7 @@ export default function KpiCard({
   const progressPct = Math.min(max > 0 ? (current / max) * 100 : 0, 100);
 
   return (
-    <div className="box-border flex h-[71px] w-[184px] max-w-full shrink-0 flex-col rounded-[12px] border border-border p-[8px]">
+    <div className="box-border flex h-[71px] w-full min-w-0 max-w-full shrink-0 flex-col rounded-[12px] border border-border p-[8px]">
       <div className="flex shrink-0 items-center justify-between gap-[4px]">
         <span className="text-kpi-title min-w-0 truncate">{title}</span>
 
@@ -70,14 +70,17 @@ export default function KpiCard({
             {showTooltip && (
               <div
                 role="tooltip"
-                className="absolute left-1/2 -translate-x-1/2 top-full mt-2 z-20 w-[246px] rounded-[4px] px-4 py-2 text-xs text-white leading-[18px]"
-                style={{ background: "#151618" }}
+                className="absolute left-1/2 top-full z-20 mt-1 flex w-[246px] -translate-x-1/2 flex-col items-center justify-center p-0"
               >
-                <span
-                  className="absolute left-1/2 -translate-x-1/2 bottom-full h-0 w-0 border-x-[5px] border-b-[5px] border-x-transparent"
-                  style={{ borderBottomColor: "#151618" }}
-                />
-                {tooltip}
+                {/* Figma: 10×4 frame, 7×4 polygon arrow above bubble */}
+                <div className="flex h-1 w-[10px] shrink-0 items-start justify-center" aria-hidden>
+                  <svg width="7" height="4" viewBox="0 0 7 4" className="shrink-0" aria-hidden>
+                    <polygon points="3.5,0 7,4 0,4" fill="var(--popup-dark-color)" />
+                  </svg>
+                </div>
+                <div className="box-border flex min-h-[64px] w-[246px] shrink-0 flex-row items-center justify-center gap-[10px] self-stretch rounded-[4px] bg-[var(--popup-dark-color)] px-4 py-2">
+                  <span className="max-w-[214px] text-center text-b3 text-white">{tooltip}</span>
+                </div>
               </div>
             )}
           </div>

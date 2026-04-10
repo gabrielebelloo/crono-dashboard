@@ -7,7 +7,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen min-w-0">
       <header className="fixed top-0 left-0 right-0 z-30 flex h-14 items-center justify-between border-b border-border bg-white px-4 lg:hidden">
         <Link to="/dashboard" className="flex shrink-0" aria-label="Crono - go to dashboard">
           <CronoLogo className="h-6 w-auto" aria-hidden />
@@ -37,7 +37,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
       <Sidebar mobileOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <main className="w-full p-4 pt-18 lg:pt-4">{children}</main>
+      <main className="min-w-0 flex-1 max-w-full overflow-x-hidden p-4 pt-18 sm:p-5 lg:p-6 lg:pt-4">
+        {children}
+      </main>
     </div>
   );
 }

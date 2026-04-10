@@ -39,14 +39,21 @@ export default function SignalItem({ signal, onComplete, onDelete, showDivider =
         setOpen(false);
       }
     }
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
     document.addEventListener("mousedown", handleOutsideClick);
-    return () => document.removeEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("keydown", handleEscape);
+    };
   }, [open]);
 
   return (
-    <div className="flex w-full flex-col gap-[10px] px-4">
-      <div className="flex min-h-10 w-full items-center gap-12">
-        <div className="flex min-w-0 flex-1 items-center gap-4">
+    <div className="flex w-full min-w-0 flex-col gap-[10px] px-4">
+      <div className="flex w-full min-w-0 flex-col gap-3 sm:min-h-10 sm:flex-row sm:items-center sm:justify-between sm:gap-4 lg:gap-8">
+        <div className="flex min-w-0 max-w-[min(100%,540px)] shrink items-center gap-4">
           <div className="relative shrink-0 self-center">
             <Avatar avatar={signal.avatar} />
             <span
@@ -55,8 +62,8 @@ export default function SignalItem({ signal, onComplete, onDelete, showDivider =
             />
           </div>
 
-          <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-            <p className="text-s2 text-dark">
+          <div className="flex min-w-0 flex-col gap-0.5">
+            <p className="min-w-0 text-pretty text-s2 text-dark">
               {signal.description.map((part, i) => (
                 <span key={i} className={part.highlight ? "text-main" : undefined}>
                   {part.text}
@@ -79,12 +86,14 @@ export default function SignalItem({ signal, onComplete, onDelete, showDivider =
           </div>
         </div>
 
-        <div className="flex h-8 shrink-0 items-center gap-4">
+        <div className="flex w-full shrink-0 flex-row flex-wrap items-center justify-end gap-3 sm:w-auto sm:gap-4">
           <span className="text-b5 whitespace-nowrap text-gray">{signal.date}</span>
 
-          <div className="relative" ref={popoverRef}>
+          <div className="relative shrink-0" ref={popoverRef}>
             <button
               type="button"
+              aria-expanded={open}
+              aria-haspopup="menu"
               onClick={() => setOpen((p) => !p)}
               className="box-border flex h-8 w-[90px] shrink-0 cursor-pointer items-center justify-center rounded-[34px] bg-main px-4 py-[7px] text-s3 text-white transition-opacity duration-150 hover:opacity-90 active:opacity-80"
             >
@@ -93,32 +102,37 @@ export default function SignalItem({ signal, onComplete, onDelete, showDivider =
 
             {open && (
               <div
-                className="absolute right-0 top-full z-30 mt-2 w-[216px] rounded-[15.5px] border border-border bg-white"
-                style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)" }}
+                className="absolute left-1/2 top-full z-30 mt-2 box-border flex w-[min(100vw-2rem,216px)] -translate-x-1/2 flex-col items-start gap-[10px] rounded-[16px] border border-border bg-white p-2 shadow-[0_4px_8px_rgba(0,0,0,0.1)] sm:left-auto sm:right-0 sm:translate-x-0 sm:w-[216px]"
+                role="menu"
               >
-                <div className="flex flex-col gap-1 p-2">
+                {/* Figma: inner column 200px content width, gap 4px between rows */}
+                <div className="flex w-full flex-col items-center gap-1">
                   <button
                     type="button"
+                    role="menuitem"
                     onClick={() => {
                       onComplete(signal.id);
                       setOpen(false);
                     }}
-                    className="flex h-10 w-full cursor-pointer items-center justify-between rounded-lg px-2 py-2 text-b3 text-secondary transition-colors duration-150 hover:bg-light active:opacity-80"
+                    className="box-border flex h-10 w-full cursor-pointer flex-row items-center gap-2 rounded-lg !bg-[var(--light-color)] px-2 py-2 text-left transition-colors duration-150 hover:!bg-[var(--hover-color)] active:opacity-90"
                   >
-                    Complete
-                    <CheckmarkIcon className="h-6 w-6 shrink-0" aria-hidden="true" />
+                    <span className="min-w-0 flex-1 text-b3 leading-4 text-secondary">
+                      Complete
+                    </span>
+                    <CheckmarkIcon className="h-6 w-6 shrink-0 text-secondary" aria-hidden="true" />
                   </button>
 
                   <button
                     type="button"
+                    role="menuitem"
                     onClick={() => {
                       onDelete(signal.id);
                       setOpen(false);
                     }}
-                    className="flex h-10 w-full cursor-pointer items-center justify-between rounded-lg px-2 py-2 text-b3 text-dark transition-colors duration-150 hover:bg-red-50 hover:text-red-500 active:opacity-80"
+                    className="box-border flex h-10 w-full cursor-pointer flex-row items-center gap-2 rounded-lg bg-transparent px-2 py-2 text-left transition-colors duration-150 hover:!bg-[var(--hover-color)] active:opacity-90"
                   >
-                    Delete
-                    <RemoveIcon className="h-6 w-6 shrink-0" aria-hidden="true" />
+                    <span className="min-w-0 flex-1 text-b3 leading-4 text-dark">Delete</span>
+                    <RemoveIcon className="h-6 w-6 shrink-0 text-dark" aria-hidden="true" />
                   </button>
                 </div>
               </div>
@@ -127,9 +141,7 @@ export default function SignalItem({ signal, onComplete, onDelete, showDivider =
         </div>
       </div>
 
-      {showDivider && (
-        <div className="h-px w-full max-w-[796px] self-center bg-border" aria-hidden />
-      )}
+      {showDivider && <div className="h-px w-full bg-border" aria-hidden />}
     </div>
   );
 }
