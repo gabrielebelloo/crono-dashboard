@@ -2,7 +2,7 @@
 
 **Live demo:** https://crono-dashboard.vercel.app/
 
-**Figma:** [Crono Dashboard – Test Task](https://www.figma.com/design/9stjTEFTCNpLiHePX2GYOk/Crono-dashboard---test-task?node-id=0-1&p=f&t=S2otFApGVSzl9t3G-0)
+**Figma:** [Crono Dashboard - Test Task](https://www.figma.com/design/9stjTEFTCNpLiHePX2GYOk/Crono-dashboard---test-task?node-id=0-1&p=f&t=S2otFApGVSzl9t3G-0)
 
 ## Stack
 
@@ -25,11 +25,11 @@ npm run dev
 
 ```
 src/
-├── assets/          # organized into branding/, icons/, logos/, kpi-icons/, onboarding/, sidebar-icons/
+├── assets/          # branding/, icons/, logos/, kpi-icons/, onboarding/, sidebar-icons/
 ├── components/
 │   ├── layout/      # AppLayout, Sidebar, SidebarItem
 │   └── ui/          # Card, KpiCard, TaskCard, SignalItem, OnboardingItem
-├── data/            # static data arrays for KPIs, tasks, signals, onboarding steps
+├── data/            # static data arrays (KPIs, tasks, signals, onboarding)
 ├── hooks/           # useSignals
 ├── pages/           # DashboardPage, NotFoundPage, WorkInProgressPage
 ├── router/          # route definitions
@@ -40,19 +40,31 @@ src/
 
 The full dashboard screen from Figma: welcome card, replies card, 6 KPI cards with progress bars and tooltips, 4 task cards, the onboarding checklist, and a collapsible sidebar with active state indicators and a trial CTA.
 
-The **Signals** section is the interactive part — clicking "Action" opens a popover where you can Complete or Delete a signal. This updates the counter and removes the item from the list. State resets on refresh so you can test it multiple times.
+The **Signals** section is the interactive part. Clicking "Action" opens a popover where you can Complete or Delete a signal, which updates the counter and removes the item from the list. State resets on refresh so you can test it multiple times.
 
-## Some notes on the approach
+The layout is **fully responsive**: on mobile the sidebar turns into a hamburger-triggered overlay, the card grid stacks to single column, and task cards wrap into a 2x2 grid. On tablet it shifts to a 2-column layout before reaching the full 12-column Figma layout on desktop.
 
-I kept things simple — no UI library, just Tailwind utility classes and custom components. Each card section (KPIs, tasks, signals, onboarding) pulls from a typed data array in `src/data/` and renders through a reusable component, which is how I like to structure things to keep the page component clean.
+## Approach
 
-For colors I set up CSS custom properties in `index.css` and extended them into the Tailwind config, so the Figma palette is available as Tailwind tokens everywhere (`text-main`, `bg-light`, etc.).
+No UI library, just Tailwind utility classes and custom components. Each card section pulls from a typed data array in `src/data/` and renders through a reusable component, keeping the page component clean.
 
-SVGs are imported as React components via svgr with `currentColor` strokes, so they can be tinted with Tailwind color classes directly.
+Colors are set up as CSS custom properties in `index.css` and extended into the Tailwind config, so the Figma palette is available as tokens everywhere (`text-main`, `bg-light`, etc.).
 
-For the signals interaction I went with a simple `useState` hook. No localStorage or persistence — the data resets on refresh, which felt more practical for a demo that someone will test repeatedly.
+SVGs are imported as React components via svgr with `currentColor` strokes, so they pick up color from Tailwind classes directly.
 
-Non-dashboard routes show a placeholder page. The sidebar navigation is fully wired up with React Router.
+For signals I went with a simple `useState` hook, no localStorage or persistence. The data resets on refresh, which is more practical for a demo that gets tested repeatedly.
+
+Non-dashboard routes show a placeholder page. The sidebar navigation is wired up with React Router.
+
+## Scalability
+
+The project is structured so it can grow without becoming a mess. UI components (`Card`, `KpiCard`, `TaskCard`, `SignalItem`, `OnboardingItem`) are generic and reusable, they don't know where their data comes from. All the actual content lives in typed arrays under `src/data/`, so adding a new KPI card or a new onboarding step is just pushing an object to an array, no component code to touch.
+
+Types in `src/types/` define the shape of each data model (`Signal`, `SidebarItemType`), and the data files are typed against them, so TypeScript catches mismatches at build time. In a real product these arrays would be replaced by API responses with the same shape, and the components wouldn't change at all.
+
+The hook pattern (`useSignals`) keeps state logic isolated from rendering. If signals needed to come from a backend tomorrow, you'd swap the `useState` for a fetch call inside that hook and the rest of the app stays the same.
+
+Routing is centralized in `src/router/`, layout wrapping is handled by `AppLayout`, and pages are self-contained in their own folders. Adding a new page means a new folder, a new route entry, and a sidebar item in the data array.
 
 ---
 

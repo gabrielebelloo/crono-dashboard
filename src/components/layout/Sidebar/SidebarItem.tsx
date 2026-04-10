@@ -1,7 +1,6 @@
 import type { SidebarItemType } from "../../../types/sidebarItem";
 import { sidebarIcons } from "./sidebarIcons";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ArrowIcon from "../../../assets/icons/arrow.svg?react";
 
 type Props = SidebarItemType & {
@@ -69,6 +68,7 @@ export default function SidebarItem({
           {isExpandable && (
             <ArrowIcon
               className={`${textColor} transition-transform duration-200 ${isExpanded ? "rotate-90" : ""}`}
+              aria-hidden="true"
             />
           )}
         </div>

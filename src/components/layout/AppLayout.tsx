@@ -8,9 +8,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-screen">
-      {/* Mobile top bar */}
       <header className="fixed top-0 left-0 right-0 z-30 flex h-14 items-center justify-between border-b border-border bg-white px-4 lg:hidden">
-        <Link to="/dashboard" className="flex shrink-0">
+        <Link to="/dashboard" className="flex shrink-0" aria-label="Crono - go to dashboard">
           <CronoLogo className="h-6 w-auto" aria-hidden />
         </Link>
         <button

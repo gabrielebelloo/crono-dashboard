@@ -26,7 +26,7 @@ export default function DashboardPage() {
       <Card className="md:col-span-1 lg:col-span-4">
         <div className="py-4 px-[18px]">
           <div className="text-[24px] font-bold">Welcome Alex,</div>
-          <div className="text-md text-gray">
+          <div className="text-base text-gray">
             Here's your performance overview where you can track your daily and monthly KPIs
           </div>
         </div>
@@ -101,7 +101,7 @@ export default function DashboardPage() {
             <SignalItem key={signal.id} signal={signal} onComplete={complete} onDelete={remove} />
           ))}
           {signals.length === 0 && (
-            <p className="py-6 text-center text-sm text-gray">All signals handled — great work!</p>
+            <p className="py-6 text-center text-sm text-gray">All signals handled, great work!</p>
           )}
         </div>
       </Card>

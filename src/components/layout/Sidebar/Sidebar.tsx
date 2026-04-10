@@ -58,7 +58,7 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
       style={{ width: SIDEBAR_UNCOLLAPSED_W }}
     >
       <div className="flex justify-between items-center pt-[22px] pr-[8px] pb-[22px] pl-[16px]">
-        <Link to="/dashboard" className="flex shrink-0" onClick={onClose}>
+        <Link to="/dashboard" className="flex shrink-0" onClick={onClose} aria-label="Crono - go to dashboard">
           <CronoLogo className="h-[28px] w-auto max-w-[120px]" aria-hidden />
         </Link>
         <button
@@ -107,7 +107,10 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
             style={{ ["--mask-image" as any]: `url(${cloudPng})` }}
           />
           <div className="relative z-10 text-sm font-medium">Trial ends in 2 days</div>
-          <button className="relative z-10 flex items-center bg-trialCta py-[4px] px-[8px] gap-[4px] text-[12px] text-white rounded-[8px] cursor-pointer">
+          <button
+            type="button"
+            className="relative z-10 flex items-center bg-trialCta py-[4px] px-[8px] gap-[4px] text-[12px] text-white rounded-[8px] cursor-pointer"
+          >
             Upgrade plan
             <GiftIcon aria-hidden="true" />
           </button>
@@ -133,7 +136,6 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
 
   return (
     <>
-      {/* Desktop sidebar */}
       <aside
         className="hidden lg:flex shrink-0 flex-col bg-white min-h-screen border-r border-border transition-[width] ease-out"
         style={{ width: widthPx }}
@@ -145,7 +147,7 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
               : "flex justify-between items-center pt-[22px] pr-[8px] pb-[22px] pl-[16px]"
           }
         >
-          <Link to="/dashboard" className="flex shrink-0">
+          <Link to="/dashboard" className="flex shrink-0" aria-label="Crono - go to dashboard">
             {collapsed ? (
               <CronoLogoMark className="h-7 w-7 text-main" aria-hidden />
             ) : (
@@ -212,7 +214,10 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
             ) : (
               <>
                 <div className="relative z-10 text-sm font-medium">Trial ends in 2 days</div>
-                <button className="relative z-10 flex items-center bg-trialCta py-[4px] px-[8px] gap-[4px] text-[12px] text-white rounded-[8px] cursor-pointer">
+                <button
+                  type="button"
+                  className="relative z-10 flex items-center bg-trialCta py-[4px] px-[8px] gap-[4px] text-[12px] text-white rounded-[8px] cursor-pointer"
+                >
                   Upgrade plan
                   <GiftIcon aria-hidden="true" />
                 </button>
@@ -242,7 +247,6 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
         </div>
       </aside>
 
-      {/* Mobile overlay */}
       <div
         className={`fixed inset-0 z-40 lg:hidden transition-opacity duration-300 ${
           mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"

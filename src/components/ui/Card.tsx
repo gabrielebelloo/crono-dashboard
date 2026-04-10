@@ -34,6 +34,7 @@ export default function Card({
           </div>
           {!!headerActionName && (
             <button
+              type="button"
               onClick={headerActionFunc}
               className="flex justify-between items-center gap-1 text-main text-sm font-medium cursor-pointer"
             >
