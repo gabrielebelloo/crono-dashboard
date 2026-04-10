@@ -137,7 +137,7 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
   return (
     <>
       <aside
-        className="hidden lg:flex shrink-0 flex-col bg-white min-h-screen border-r border-border transition-[width] ease-out"
+        className="hidden lg:flex shrink-0 flex-col bg-white h-screen sticky top-0 border-r border-border transition-[width] ease-out"
         style={{ width: widthPx }}
       >
         <div
