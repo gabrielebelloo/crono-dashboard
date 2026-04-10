@@ -1,4 +1,4 @@
-import ArrowIcon from "../../assets/arrow.svg?react";
+import ArrowIcon from "../../assets/icons/arrow.svg?react";
 
 export type TaskCardProps = {
   label: string;

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import type { Signal } from "../../types/signal";
-import CheckmarkIcon from "../../assets/checkmark.svg?react";
-import RemoveIcon from "../../assets/remove.svg?react";
+import CheckmarkIcon from "../../assets/icons/checkmark.svg?react";
+import RemoveIcon from "../../assets/icons/remove.svg?react";
 
 type Props = {
   signal: Signal;

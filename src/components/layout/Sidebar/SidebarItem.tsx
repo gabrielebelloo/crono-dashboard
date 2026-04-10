@@ -2,7 +2,7 @@ import type { SidebarItemType } from "../../../types/SidebarItemType";
 import { sidebarIcons } from "./sidebarIcons";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import ArrowIcon from "../../../assets/arrow.svg?react";
+import ArrowIcon from "../../../assets/icons/arrow.svg?react";
 
 type Props = SidebarItemType & {
   collapsed?: boolean;

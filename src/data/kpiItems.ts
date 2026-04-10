@@ -1,8 +1,8 @@
 import type { KpiCardProps } from "../components/ui/KpiCard";
 import { sidebarIcons } from "../components/layout/Sidebar/sidebarIcons";
-import ContactsIcon from "../assets/contacts.svg?react";
-import CompaniesIcon from "../assets/companies.svg?react";
-import MeetingsIcon from "../assets/meetings.svg?react";
+import ContactsIcon from "../assets/kpi-icons/contacts.svg?react";
+import CompaniesIcon from "../assets/kpi-icons/companies.svg?react";
+import MeetingsIcon from "../assets/kpi-icons/meetings.svg?react";
 
 export const kpiItems: KpiCardProps[] = [
   {

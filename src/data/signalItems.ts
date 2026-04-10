@@ -1,7 +1,7 @@
 import type { Signal } from "../types/signal";
-import AmazonLogo from "../assets/amazon-logo.svg?react";
-import MediumLogo from "../assets/medium-logo.svg?react";
-import McLogo from "../assets/mc-logo.svg?react";
+import AmazonLogo from "../assets/logos/amazon-logo.svg?react";
+import MediumLogo from "../assets/logos/medium-logo.svg?react";
+import McLogo from "../assets/logos/mc-logo.svg?react";
 
 export const initialSignals: Signal[] = [
   {

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import type { SidebarItemType } from "../../../types/SidebarItemType";
 import SidebarItem from "./SidebarItem";
-import CronoLogo from "../../../assets/crono-logo-transparent.svg?react";
-import CronoLogoMark from "../../../assets/crono-logo-mark.svg?react";
-import ArrowForwardIcon from "../../../assets/arrow-forward.svg?react";
-import GiftIcon from "../../../assets/gift-icon.svg?react";
-import cloudPng from "../../../assets/cloud.png";
+import CronoLogo from "../../../assets/branding/crono-logo-transparent.svg?react";
+import CronoLogoMark from "../../../assets/branding/crono-logo-mark.svg?react";
+import ArrowForwardIcon from "../../../assets/icons/arrow-forward.svg?react";
+import GiftIcon from "../../../assets/icons/gift-icon.svg?react";
+import cloudPng from "../../../assets/branding/cloud.png";
 
 const SIDEBAR_COLLAPSED_W = 64;
 const SIDEBAR_UNCOLLAPSED_W = 192;
