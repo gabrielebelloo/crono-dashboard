@@ -19,7 +19,7 @@ export default function Sidebar() {
     { id: "templates", label: "Templates", href: "/templates" },
     { id: "sequences", label: "Sequences", href: "/sequences" },
     { id: "tasks", label: "Tasks", href: "/tasks" },
-    { id: "inbox", label: "Inbox", href: "/inbox" },
+    { id: "inbox", label: "Inbox", href: "/inbox", counter: 24 },
     { id: "deals", label: "Deals", href: "/deals" },
     { id: "analytics", label: "Analytics", href: "/analytics" },
   ];

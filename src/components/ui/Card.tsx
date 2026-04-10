@@ -24,11 +24,16 @@ export default function Card({
           <div className="flex gap-2">
             <div className="font-semibold">{headerTitle}</div>
             {!!headerCounter && (
-              <div className="bg-yellow-500 w-[24px] h-[24px] rounded-[12px]">{headerCounter}</div>
+              <div className="flex justify-center items-center font-medium text-[12px] text-white bg-yellow-500 w-[28px] h-[24px] rounded-[12px]">
+                {headerCounter}
+              </div>
             )}
           </div>
           {!!headerActionName && (
-            <button onClick={headerActionFunc} className="flex justify between items-center gap-1 text-main text-sm cursor-pointer">
+            <button
+              onClick={headerActionFunc}
+              className="flex justify between items-center gap-1 text-main text-sm cursor-pointer"
+            >
               {headerActionName}
               {HeaderActionIcon && <HeaderActionIcon />}
             </button>

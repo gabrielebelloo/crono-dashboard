@@ -4,4 +4,7 @@ export type SidebarItemType = {
   id: keyof typeof sidebarIcons;
   label: string;
   href: string;
+  counter?: number;
+  expandable?: boolean;
+  isExpanded?: boolean;
 };

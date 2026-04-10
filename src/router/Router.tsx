@@ -5,7 +5,7 @@ import WorkInProgressPage from "../pages/WorkInProgressPage/WorkInProgressPage";
 
 export default function Router() {
   return (
-    <Routes>  
+    <Routes>
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/find-new" element={<WorkInProgressPage />} />
