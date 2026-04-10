@@ -10,15 +10,16 @@ type CardProps = {
 
 export default function Card({
   children,
-  className,
+  className = "",
   headerTitle,
   headerActionName,
   headerActionIcon: HeaderActionIcon,
   headerActionFunc,
   headerCounter,
 }: CardProps) {
+  const hasBg = className.includes("bg-");
   return (
-    <div className={`flex flex-col rounded-xl border border-border p-4 ${className}`}>
+    <div className={`flex flex-col rounded-xl border border-border p-4 ${hasBg ? "" : "bg-white"} ${className}`}>
       {!!headerTitle && (
         <header className="flex justify-between items-center mb-2">
           <div className="flex gap-2">

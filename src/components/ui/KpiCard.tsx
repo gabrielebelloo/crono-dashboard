@@ -41,7 +41,8 @@ export default function KpiCard({
             <button
               type="button"
               aria-label={`Info: ${title}`}
-              className="text-gray hover:text-main transition-colors duration-150 cursor-pointer"
+              className="hover:opacity-70 transition-opacity duration-150 cursor-pointer"
+              style={{ color: "#3E485B" }}
               onMouseEnter={() => setShowTooltip(true)}
               onMouseLeave={() => setShowTooltip(false)}
               onFocus={() => setShowTooltip(true)}
@@ -56,12 +57,17 @@ export default function KpiCard({
                 aria-hidden="true"
               >
                 <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.25" />
-                <path
-                  d="M8 7v4M8 5.5v.5"
-                  stroke="currentColor"
-                  strokeWidth="1.25"
-                  strokeLinecap="round"
-                />
+                <text
+                  x="8"
+                  y="11.5"
+                  textAnchor="middle"
+                  fontSize="8"
+                  fontWeight="600"
+                  fontFamily="Poppins, sans-serif"
+                  fill="currentColor"
+                >
+                  i
+                </text>
               </svg>
             </button>
 

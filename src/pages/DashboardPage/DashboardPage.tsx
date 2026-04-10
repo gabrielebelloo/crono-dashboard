@@ -1,6 +1,6 @@
 import Card from "../../components/ui/Card";
 import KpiCard from "../../components/ui/KpiCard";
-import type { KpiCardProps } from "../../components/ui/KpiCard";
+import TaskCard from "../../components/ui/TaskCard";
 import ArrowIcon from "../../assets/arrow.svg?react";
 import EditIcon from "../../assets/edit.svg?react";
 import { useNavigate } from "react-router-dom";
@@ -9,56 +9,8 @@ import RedditLogo from "../../assets/reddit-logo.svg?react";
 import AmazonLogo from "../../assets/amazon-logo.svg?react";
 import McLogo from "../../assets/mc-logo.svg?react";
 import MediumLogo from "../../assets/medium-logo.svg?react";
-import ContactsIcon from "../../assets/contacts.svg?react";
-import CompaniesIcon from "../../assets/companies.svg?react";
-import MeetingsIcon from "../../assets/meetings.svg?react";
-
-const kpiItems: KpiCardProps[] = [
-  {
-    title: "Contacts engaged",
-    icon: ContactsIcon,
-    color: "#4C8DFF",
-    current: 0,
-    max: 500,
-    tooltip: "Contacts who have at least one logged activity within the current month",
-  },
-  {
-    title: "Companies engaged",
-    icon: CompaniesIcon,
-    color: "#4C8DFF",
-    current: 0,
-    max: 500,
-  },
-  {
-    title: "Activities",
-    icon: sidebarIcons.tasks,
-    color: "#8B5CF6",
-    current: 1000,
-    max: 2000,
-  },
-  {
-    title: "Meetings",
-    icon: MeetingsIcon,
-    color: "#F5B000",
-    current: 20,
-    max: 30,
-  },
-  {
-    title: "Deals",
-    icon: sidebarIcons.tasks,
-    color: "#EC4899",
-    current: 100,
-    max: 200,
-  },
-  {
-    title: "Pipeline",
-    color: "#1EBAB2",
-    current: 50000,
-    max: 100000,
-    prefix: "€",
-    suffix: "K",
-  },
-];
+import { kpiItems } from "../../data/kpiItems";
+import { taskItems } from "../../data/taskItems";
 
 export default function DashboardPage() {
   const navigate = useNavigate();
@@ -69,7 +21,7 @@ export default function DashboardPage() {
         <div className="py-4 px-[18px]">
           <div className="text-[24px] font-bold">Welcome Alex,</div>
           <div className="text-md text-gray">
-            Here’s your performance overview where you can track your daily and monthly KPIs
+            Here's your performance overview where you can track your daily and monthly KPIs
           </div>
         </div>
       </Card>
@@ -118,8 +70,20 @@ export default function DashboardPage() {
         </div>
       </Card>
 
-      <Card headerTitle="Tasks" className="xl:col-span-8">
-        test
+      <Card
+        headerTitle="Today's tasks"
+        className="xl:col-span-8"
+      >
+        <div className="flex mt-1">
+          {taskItems.map((item, idx) => (
+            <>
+              {idx > 0 && (
+                <div key={`divider-${idx}`} className="w-px self-stretch bg-border shrink-0 mx-2" />
+              )}
+              <TaskCard key={item.label} {...item} onClick={() => navigate("/tasks")} />
+            </>
+          ))}
+        </div>
       </Card>
 
       <Card headerTitle="Signals" headerCounter={12} className="xl:col-span-8">
