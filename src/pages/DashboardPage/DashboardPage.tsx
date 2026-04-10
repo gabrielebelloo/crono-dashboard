@@ -14,17 +14,35 @@ export default function DashboardPage() {
         </div>
       </Card>
 
-      <Card headerTitle="Replies" headerAction="Open inbox" headerActionIcon={ArrowIcon} className="xl:col-span-4">
+      <Card
+        headerTitle="Replies"
+        headerAction="Open inbox"
+        headerActionIcon={ArrowIcon}
+        className="xl:col-span-4"
+      >
         test
       </Card>
 
-      <Card headerTitle="May's Performance" headerAction="Edit KPIs" headerActionIcon={EditIcon} className="xl:col-span-4 xl:row-span-2">Test</Card>
+      <Card
+        headerTitle="May's Performance"
+        headerAction="Edit KPIs"
+        headerActionIcon={EditIcon}
+        className="xl:col-span-4 xl:row-span-2"
+      >
+        Test
+      </Card>
 
-      <Card headerTitle="Tasks" className="xl:col-span-8">test</Card>
+      <Card headerTitle="Tasks" className="xl:col-span-8">
+        test
+      </Card>
 
-      <Card headerTitle="Signals" headerCounter={12} className="xl:col-span-8">test</Card>
+      <Card headerTitle="Signals" headerCounter={12} className="xl:col-span-8">
+        test
+      </Card>
 
-      <Card headerTitle="Onboarding" className="xl:col-span-4">test</Card>
+      <Card headerTitle="Onboarding" className="xl:col-span-4">
+        test
+      </Card>
     </div>
   );
 }

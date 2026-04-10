@@ -21,7 +21,9 @@ export default function Card({
         <header className="flex justify-between items-center">
           <div className="flex gap-2">
             <div className="font-semibold">{headerTitle}</div>
-            {!!headerCounter && <div className="bg-yellow-500 w-[24px] h-[24px] rounded-[12px]">{headerCounter}</div>}  
+            {!!headerCounter && (
+              <div className="bg-yellow-500 w-[24px] h-[24px] rounded-[12px]">{headerCounter}</div>
+            )}
           </div>
           {!!headerAction && (
             <button className="flex justify between items-center gap-1 text-main text-sm cursor-pointer">
