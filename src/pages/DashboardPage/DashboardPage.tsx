@@ -1,4 +1,6 @@
 import Card from "../../components/ui/Card";
+import KpiCard from "../../components/ui/KpiCard";
+import type { KpiCardProps } from "../../components/ui/KpiCard";
 import ArrowIcon from "../../assets/arrow.svg?react";
 import EditIcon from "../../assets/edit.svg?react";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +9,56 @@ import RedditLogo from "../../assets/reddit-logo.svg?react";
 import AmazonLogo from "../../assets/amazon-logo.svg?react";
 import McLogo from "../../assets/mc-logo.svg?react";
 import MediumLogo from "../../assets/medium-logo.svg?react";
+import ContactsIcon from "../../assets/contacts.svg?react";
+import CompaniesIcon from "../../assets/companies.svg?react";
+import MeetingsIcon from "../../assets/meetings.svg?react";
+
+const kpiItems: KpiCardProps[] = [
+  {
+    title: "Contacts engaged",
+    icon: ContactsIcon,
+    color: "#4C8DFF",
+    current: 0,
+    max: 500,
+    tooltip: "Contacts who have at least one logged activity within the current month",
+  },
+  {
+    title: "Companies engaged",
+    icon: CompaniesIcon,
+    color: "#4C8DFF",
+    current: 0,
+    max: 500,
+  },
+  {
+    title: "Activities",
+    icon: sidebarIcons.tasks,
+    color: "#8B5CF6",
+    current: 1000,
+    max: 2000,
+  },
+  {
+    title: "Meetings",
+    icon: MeetingsIcon,
+    color: "#F5B000",
+    current: 20,
+    max: 30,
+  },
+  {
+    title: "Deals",
+    icon: sidebarIcons.tasks,
+    color: "#EC4899",
+    current: 100,
+    max: 200,
+  },
+  {
+    title: "Pipeline",
+    color: "#1EBAB2",
+    current: 50000,
+    max: 100000,
+    prefix: "€",
+    suffix: "K",
+  },
+];
 
 export default function DashboardPage() {
   const navigate = useNavigate();
@@ -59,7 +111,11 @@ export default function DashboardPage() {
         headerActionIcon={EditIcon}
         className="xl:col-span-4 xl:row-span-2"
       >
-        Test
+        <div className="grid grid-cols-2 gap-2 mt-1">
+          {kpiItems.map((item) => (
+            <KpiCard key={item.title} {...item} />
+          ))}
+        </div>
       </Card>
 
       <Card headerTitle="Tasks" className="xl:col-span-8">
