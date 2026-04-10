@@ -45,7 +45,10 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
   return (
     <div className="flex items-center gap-4 lg:gap-12 px-4 py-2">
       <div className="flex items-center gap-4 flex-1 min-w-0">
-        <Avatar avatar={signal.avatar} />
+        <div className="relative shrink-0">
+          <Avatar avatar={signal.avatar} />
+          <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-[#F9BB06] ring-2 ring-white" />
+        </div>
 
         <div className="flex flex-col gap-[2px] min-w-0">
           <p className="text-[14px] font-semibold leading-[22px] text-[#010E27]">
