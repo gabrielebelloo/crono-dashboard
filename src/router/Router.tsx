@@ -16,6 +16,7 @@ export default function Router() {
       <Route path="/inbox" element={<WorkInProgressPage />} />
       <Route path="/deals" element={<WorkInProgressPage />} />
       <Route path="/analytics" element={<WorkInProgressPage />} />
+      <Route path="/profile" element={<WorkInProgressPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

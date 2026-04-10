@@ -32,7 +32,7 @@ export default function SidebarItem({
 
   return (
     <Link
-      className={`group flex h-[40px] w-full items-center rounded-md ${
+      className={`group flex h-[32px] w-full items-center rounded-md ${
         collapsed ? "justify-center" : "justify-between"
       } py-[4px] transition-colors duration-150`}
       to={href}

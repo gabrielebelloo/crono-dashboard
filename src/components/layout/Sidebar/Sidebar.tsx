@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import type { SidebarItemType } from "../../../types/sidebarItem";
 import SidebarItem from "./SidebarItem";
 import CronoLogo from "../../../assets/branding/crono-logo-transparent.svg?react";
@@ -52,199 +52,201 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
 
   const widthPx = collapsed ? SIDEBAR_COLLAPSED_W : SIDEBAR_UNCOLLAPSED_W;
 
-  const sidebarContent = (
-    <aside
-      className="flex shrink-0 flex-col bg-white h-dvh border-r border-border transition-[width] ease-out"
-      style={{ width: SIDEBAR_UNCOLLAPSED_W }}
-    >
-      <div className="flex justify-between items-center pt-[22px] pr-[8px] pb-[22px] pl-[16px]">
-        <Link to="/dashboard" className="flex shrink-0" onClick={onClose} aria-label="Crono - go to dashboard">
-          <CronoLogo className="h-[28px] w-auto max-w-[120px]" aria-hidden />
-        </Link>
-        <button
-          type="button"
-          onClick={onClose}
-          className="flex shrink-0 rounded-full text-gray hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-main/40 lg:hidden cursor-pointer"
-          aria-label="Close menu"
-        >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            aria-hidden="true"
-          >
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
-      </div>
-
-      <nav className="flex flex-col gap-[8px]">
-        {sidebarItems.map((item) => (
-          <SidebarItem
-            key={item.href}
-            {...item}
-            collapsed={false}
-            isExpanded={expandedItem === item.id}
-            onToggle={() => toggleItem(item.id)}
-            onNavigate={handleNavigate}
-          />
-        ))}
-      </nav>
-
-      <div className="mt-4">
+  const trialCard = (isCollapsed: boolean) => (
+    <div className={`${isCollapsed ? "px-2" : ""}`}>
+      <div
+        className={
+          isCollapsed
+            ? "relative w-full h-[48px] bg-[#FEF3D2] mx-auto rounded-md flex items-center justify-center overflow-hidden"
+            : "relative w-[176px] h-[64px] bg-[#FEF3D2] mx-auto rounded-md p-[8px] overflow-hidden"
+        }
+        title="Trial ends in 2 days"
+      >
         <div
-          className="relative w-[176px] h-[64px] bg-[#FEF3D2] mx-auto rounded-md p-[8px] overflow-hidden"
-          title="Trial ends in 2 days"
-        >
-          <div
-            aria-hidden="true"
-            className="mask-contain-top-right pointer-events-none absolute right-0 top-0 bg-trialCta opacity-60 h-[67px] w-[49px] translate-x-3 -translate-y-2"
-            style={{ ["--mask-image" as any]: `url(${cloudPng})` }}
-          />
-          <div className="relative z-10 text-sm font-medium">Trial ends in 2 days</div>
-          <button
-            type="button"
-            className="relative z-10 flex items-center bg-trialCta py-[4px] px-[8px] gap-[4px] text-[12px] text-white rounded-[8px] cursor-pointer"
-          >
-            Upgrade plan
-            <GiftIcon aria-hidden="true" />
-          </button>
-        </div>
+          aria-hidden="true"
+          className={`mask-contain-top-right pointer-events-none absolute right-0 top-0 bg-trialCta opacity-60 ${
+            isCollapsed
+              ? "h-[56px] w-[49px] translate-x-2 -translate-y-1"
+              : "h-[67px] w-[49px] translate-x-3 -translate-y-2"
+          }`}
+          style={{ ["--mask-image" as any]: `url(${cloudPng})` }}
+        />
+
+        {isCollapsed ? (
+          <>
+            <button
+              className="relative z-10 flex h-9 w-9 items-center justify-center rounded-md bg-trialCta text-white cursor-pointer"
+              type="button"
+              aria-label="Upgrade plan. Trial ends in 2 days"
+            >
+              <GiftIcon aria-hidden="true" />
+            </button>
+            <span className="sr-only">Trial ends in 2 days</span>
+          </>
+        ) : (
+          <>
+            <div className="relative z-10 text-sm font-medium">Trial ends in 2 days</div>
+            <button
+              type="button"
+              className="relative z-10 flex items-center bg-trialCta py-[4px] px-[8px] gap-[4px] text-[12px] text-white rounded-[8px] cursor-pointer"
+            >
+              Upgrade plan
+              <GiftIcon aria-hidden="true" />
+            </button>
+          </>
+        )}
       </div>
+    </div>
+  );
 
-      <div className="min-h-0 flex-1" aria-hidden="true" />
+  const location = useLocation();
+  const isProfileActive = location.pathname === "/profile";
 
-      <div className="flex h-[72px] w-full shrink-0 items-center justify-center border-t border-border px-3 gap-2 py-[14px]">
+  const accountSection = (isCollapsed: boolean) => (
+    <div className="flex flex-col gap-[8px] w-full shrink-0 pb-[12px]">
+      <div className="w-full h-0 border-t border-border" />
+      <Link
+        to="/profile"
+        className={`relative group flex items-center rounded-[29px] transition-colors duration-150 ${
+          isCollapsed ? "justify-center px-2 py-2 mx-auto" : "gap-[8px] py-[4px] px-[12px]"
+        }`}
+      >
+        {isProfileActive && (
+          <div className="w-[3px] h-[32px] absolute left-0 rounded-tr-[3px] rounded-br-[3px] bg-secondary" />
+        )}
         <img
           width={32}
+          height={32}
           src="/company-logo.png"
           alt="Company Logo"
-          className="rounded-full object-cover"
+          className="rounded-full object-cover shrink-0"
         />
-        <div className="min-w-0 flex-1">
-          <div className="text-sm">William Robertson</div>
-          <div className="text-sm text-gray">Sales</div>
+        {!isCollapsed && (
+          <div className="min-w-0 flex-1">
+            <div className="text-[14px] font-normal leading-[24px] text-[#010E27]">
+              William Robertson
+            </div>
+            <div className="text-[14px] font-normal leading-[24px] text-[#7A8395]">Sales</div>
+          </div>
+        )}
+        {isCollapsed && <span className="sr-only">William Robertson, Sales</span>}
+      </Link>
+    </div>
+  );
+
+  const sidebarContent = (
+    <aside
+      className="flex shrink-0 flex-col justify-between bg-white h-dvh border-r border-border"
+      style={{ width: SIDEBAR_UNCOLLAPSED_W }}
+    >
+      <div className="flex flex-col gap-[8px]">
+        <div className="flex justify-between items-center pt-[22px] pr-[8px] pb-[22px] pl-[16px]">
+          <Link
+            to="/dashboard"
+            className="flex shrink-0"
+            onClick={onClose}
+            aria-label="Crono - go to dashboard"
+          >
+            <CronoLogo className="h-[28px] w-auto max-w-[120px]" aria-hidden />
+          </Link>
+          <button
+            type="button"
+            onClick={onClose}
+            className="flex shrink-0 rounded-full text-gray hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-main/40 lg:hidden cursor-pointer"
+            aria-label="Close menu"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              aria-hidden="true"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-[16px]">
+          <nav className="flex flex-col gap-[16px]">
+            {sidebarItems.map((item) => (
+              <SidebarItem
+                key={item.href}
+                {...item}
+                collapsed={false}
+                isExpanded={expandedItem === item.id}
+                onToggle={() => toggleItem(item.id)}
+                onNavigate={handleNavigate}
+              />
+            ))}
+          </nav>
+
+          {trialCard(false)}
         </div>
       </div>
+
+      {accountSection(false)}
     </aside>
   );
 
   return (
     <>
       <aside
-        className="hidden lg:flex shrink-0 flex-col bg-white h-screen sticky top-0 border-r border-border transition-[width] ease-out"
+        className="hidden lg:flex shrink-0 flex-col justify-between bg-white h-screen sticky top-0 border-r border-border transition-[width] ease-out"
         style={{ width: widthPx }}
       >
-        <div
-          className={
-            collapsed
-              ? "flex flex-col items-center gap-3 pt-[22px] pb-[22px] px-2"
-              : "flex justify-between items-center pt-[22px] pr-[8px] pb-[22px] pl-[16px]"
-          }
-        >
-          <Link to="/dashboard" className="flex shrink-0" aria-label="Crono - go to dashboard">
-            {collapsed ? (
-              <CronoLogoMark className="h-7 w-7 text-main" aria-hidden />
-            ) : (
-              <CronoLogo className="h-[28px] w-auto max-w-[120px]" aria-hidden />
-            )}
-          </Link>
-          <button
-            type="button"
-            onClick={() => setCollapsed((c) => !c)}
-            className="flex shrink-0 rounded-full text-gray hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-main/40"
-            aria-expanded={!collapsed}
-            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          >
-            <ArrowForwardIcon
-              className={`cursor-pointer transition-transform duration-200 ${collapsed ? "rotate-180" : ""}`}
-              aria-hidden
-            />
-          </button>
-        </div>
-
-        <nav className={`flex flex-col gap-[8px] ${collapsed ? "items-center px-0" : ""}`}>
-          {sidebarItems.map((item) => (
-            <SidebarItem
-              key={item.href}
-              {...item}
-              collapsed={collapsed}
-              isExpanded={expandedItem === item.id}
-              onToggle={() => toggleItem(item.id)}
-              onNavigate={() => setExpandedItem(null)}
-            />
-          ))}
-        </nav>
-
-        <div className={`${collapsed ? "mt-4 px-2" : "mt-4"}`}>
+        <div className={`flex flex-col gap-[8px] ${collapsed ? "items-center" : ""}`}>
           <div
             className={
               collapsed
-                ? "relative w-full h-[48px] bg-[#FEF3D2] mx-auto rounded-md flex items-center justify-center overflow-hidden"
-                : "relative w-[176px] h-[64px] bg-[#FEF3D2] mx-auto rounded-md p-[8px] overflow-hidden"
+                ? "flex flex-col items-center gap-3 pt-[22px] pb-[22px] px-2"
+                : "flex justify-between items-center pt-[22px] pr-[8px] pb-[22px] pl-[16px]"
             }
-            title="Trial ends in 2 days"
           >
-            <div
-              aria-hidden="true"
-              className={`mask-contain-top-right pointer-events-none absolute right-0 top-0 bg-trialCta opacity-60 ${
-                collapsed
-                  ? "h-[56px] w-[49px] translate-x-2 -translate-y-1"
-                  : "h-[67px] w-[49px] translate-x-3 -translate-y-2"
-              }`}
-              style={{ ["--mask-image" as any]: `url(${cloudPng})` }}
-            />
+            <Link to="/dashboard" className="flex shrink-0" aria-label="Crono - go to dashboard">
+              {collapsed ? (
+                <CronoLogoMark className="h-7 w-7 text-main" aria-hidden />
+              ) : (
+                <CronoLogo className="h-[28px] w-auto max-w-[120px]" aria-hidden />
+              )}
+            </Link>
+            <button
+              type="button"
+              onClick={() => setCollapsed((c) => !c)}
+              className="flex shrink-0 rounded-full text-gray hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-main/40"
+              aria-expanded={!collapsed}
+              aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            >
+              <ArrowForwardIcon
+                className={`cursor-pointer transition-transform duration-200 ${collapsed ? "rotate-180" : ""}`}
+                aria-hidden
+              />
+            </button>
+          </div>
 
-            {collapsed ? (
-              <>
-                <button
-                  className="relative z-10 flex h-9 w-9 items-center justify-center rounded-md bg-trialCta text-white cursor-pointer"
-                  type="button"
-                  aria-label="Upgrade plan. Trial ends in 2 days"
-                >
-                  <GiftIcon aria-hidden="true" />
-                </button>
-                <span className="sr-only">Trial ends in 2 days</span>
-              </>
-            ) : (
-              <>
-                <div className="relative z-10 text-sm font-medium">Trial ends in 2 days</div>
-                <button
-                  type="button"
-                  className="relative z-10 flex items-center bg-trialCta py-[4px] px-[8px] gap-[4px] text-[12px] text-white rounded-[8px] cursor-pointer"
-                >
-                  Upgrade plan
-                  <GiftIcon aria-hidden="true" />
-                </button>
-              </>
-            )}
+          <div className={`flex flex-col gap-[16px] ${collapsed ? "items-center" : ""}`}>
+            <nav className={`flex flex-col gap-[16px] ${collapsed ? "items-center px-0" : ""}`}>
+              {sidebarItems.map((item) => (
+                <SidebarItem
+                  key={item.href}
+                  {...item}
+                  collapsed={collapsed}
+                  isExpanded={expandedItem === item.id}
+                  onToggle={() => toggleItem(item.id)}
+                  onNavigate={() => setExpandedItem(null)}
+                />
+              ))}
+            </nav>
+
+            {trialCard(collapsed)}
           </div>
         </div>
 
-        <div className="min-h-0 flex-1" aria-hidden="true" />
-
-        <div
-          className={`flex h-[72px] w-full shrink-0 items-center justify-center border-t border-border px-3 gap-2 ${collapsed ? "py-2" : "py-[14px]"}`}
-        >
-          <img
-            width={32}
-            src="/company-logo.png"
-            alt="Company Logo"
-            className="rounded-full object-cover"
-          />
-          {!collapsed && (
-            <div className="min-w-0 flex-1">
-              <div className="text-sm">William Robertson</div>
-              <div className="text-sm text-gray">Sales</div>
-            </div>
-          )}
-          {collapsed && <span className="sr-only">William Robertson, Sales</span>}
-        </div>
+        {accountSection(collapsed)}
       </aside>
 
       <div
