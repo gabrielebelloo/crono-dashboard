@@ -25,9 +25,9 @@ export default function Card({
       {!!headerTitle && (
         <header className="flex justify-between items-center mb-2 shrink-0">
           <div className="flex items-center gap-[6px]">
-            <div className="text-sm font-semibold leading-[22px]">{headerTitle}</div>
+            <div className="text-s2">{headerTitle}</div>
             {!!headerCounter && (
-              <div className="flex justify-center items-center font-semibold text-[12px] leading-[16px] text-white bg-[#F9BB06] w-[28px] h-[24px] rounded-[12px]">
+              <div className="flex justify-center items-center text-b3 text-white bg-yellow w-[28px] h-[24px] rounded-[12px]">
                 {headerCounter}
               </div>
             )}

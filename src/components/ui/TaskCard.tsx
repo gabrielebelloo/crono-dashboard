@@ -68,7 +68,7 @@ export default function TaskCard({
       </div>
 
       <div className="flex items-center justify-between">
-        <span className="text-[12px] font-medium leading-[16px] text-[#3E485B]">{label}</span>
+        <span className="text-b3 text-[#3E485B]">{label}</span>
         <ArrowIcon className="shrink-0 text-[#3E485B]" aria-hidden="true" />
       </div>
     </button>

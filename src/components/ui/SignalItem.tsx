@@ -47,11 +47,11 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
       <div className="flex items-center gap-4 flex-1 min-w-0">
         <div className="relative shrink-0">
           <Avatar avatar={signal.avatar} />
-          <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-[#F9BB06] ring-2 ring-white" />
+          <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-yellow ring-2 ring-white" />
         </div>
 
         <div className="flex flex-col gap-[2px] min-w-0">
-          <p className="text-[14px] font-semibold leading-[22px] text-[#010E27]">
+          <p className="text-s2 text-dark">
             {signal.description.map((part, i) => (
               <span key={i} className={part.highlight ? "text-main" : ""}>
                 {part.text}
@@ -61,10 +61,7 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
 
           <div className="flex items-center gap-1 flex-wrap">
             {signal.tags.map((tag) => (
-              <span
-                key={tag.label}
-                className={`text-[12px] font-medium leading-[16px] ${tag.colorClass}`}
-              >
+              <span key={tag.label} className={`text-b3 ${tag.colorClass}`}>
                 {tag.label}
               </span>
             ))}
@@ -86,7 +83,7 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
           <button
             type="button"
             onClick={() => setOpen((p) => !p)}
-            className="h-8 px-4 rounded-[34px] bg-main text-white text-[14px] font-medium leading-[18px] cursor-pointer hover:opacity-90 active:opacity-80 transition-opacity duration-150"
+            className="h-8 px-4 rounded-[34px] bg-main text-white text-s3 cursor-pointer hover:opacity-90 active:opacity-80 transition-opacity duration-150"
           >
             Action
           </button>
@@ -103,7 +100,7 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
                     onComplete(signal.id);
                     setOpen(false);
                   }}
-                  className="flex items-center justify-between w-full px-2 py-2 h-10 rounded-lg text-[#0A9B94] text-[12px] font-medium leading-[16px] cursor-pointer hover:bg-light active:opacity-80 transition-colors duration-150"
+                  className="flex items-center justify-between w-full px-2 py-2 h-10 rounded-lg text-secondary text-b3 cursor-pointer hover:bg-light active:opacity-80 transition-colors duration-150"
                 >
                   Complete
                   <CheckmarkIcon className="h-6 w-6 shrink-0" aria-hidden="true" />
@@ -115,7 +112,7 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
                     onDelete(signal.id);
                     setOpen(false);
                   }}
-                  className="flex items-center justify-between w-full px-2 py-2 h-10 rounded-lg text-[#010E27] text-[12px] font-medium leading-[16px] cursor-pointer hover:bg-red-50 hover:text-red-500 active:opacity-80 transition-colors duration-150"
+                  className="flex items-center justify-between w-full px-2 py-2 h-10 rounded-lg text-dark text-b3 cursor-pointer hover:bg-red-50 hover:text-red-500 active:opacity-80 transition-colors duration-150"
                 >
                   Delete
                   <RemoveIcon className="h-6 w-6 shrink-0" aria-hidden="true" />

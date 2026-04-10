@@ -92,7 +92,7 @@ export default function DashboardPage() {
         headerCounter={signals.length}
         className="md:col-span-2 lg:col-span-8 max-h-[60vh] lg:max-h-[412px] overflow-hidden"
       >
-        <p className="text-[14px] font-normal leading-[24px] text-gray mb-1 shrink-0">
+        <p className="text-b2 text-gray mb-1 shrink-0">
           Never miss a single opportunity: check out your top signals from your 1st-degree LinkedIn
           connections.
         </p>

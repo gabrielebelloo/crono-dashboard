@@ -57,25 +57,25 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
       <div
         className={
           isCollapsed
-            ? "relative w-full h-[48px] bg-[#FEF3D2] mx-auto rounded-md flex items-center justify-center overflow-hidden"
-            : "relative w-[176px] h-[64px] bg-[#FEF3D2] mx-auto rounded-md p-[8px] overflow-hidden"
+            ? "relative w-full h-[48px] bg-[#FEF3D2] mx-auto rounded-[8px] flex items-center justify-center overflow-hidden"
+            : "relative w-[176px] h-[64px] bg-[#FEF3D2] mx-auto rounded-[8px] overflow-hidden"
         }
         title="Trial ends in 2 days"
       >
-        <div
+        <img
+          src={cloudPng}
           aria-hidden="true"
-          className={`mask-contain-top-right pointer-events-none absolute right-0 top-0 bg-trialCta opacity-60 ${
-            isCollapsed
-              ? "h-[56px] w-[49px] translate-x-2 -translate-y-1"
-              : "h-[67px] w-[49px] translate-x-3 -translate-y-2"
+          className={`pointer-events-none absolute object-contain ${
+            isCollapsed ? "w-[60px] h-[56px] right-0 top-0" : "w-[60px] h-[67px] left-[128px] top-0"
           }`}
-          style={{ ["--mask-image" as any]: `url(${cloudPng})` }}
+          style={{ mixBlendMode: "color-burn" }}
+          alt=""
         />
 
         {isCollapsed ? (
           <>
             <button
-              className="relative z-10 flex h-9 w-9 items-center justify-center rounded-md bg-trialCta text-white cursor-pointer"
+              className="relative z-10 flex h-9 w-9 items-center justify-center rounded-md bg-yellow text-white cursor-pointer"
               type="button"
               aria-label="Upgrade plan. Trial ends in 2 days"
             >
@@ -85,13 +85,15 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
           </>
         ) : (
           <>
-            <div className="relative z-10 text-sm font-medium">Trial ends in 2 days</div>
+            <div className="absolute left-[8px] top-[8px] z-10 text-s3 text-dark">
+              Trial ends in 2 days
+            </div>
             <button
               type="button"
-              className="relative z-10 flex items-center bg-trialCta py-[4px] px-[8px] gap-[4px] text-[12px] text-white rounded-[8px] cursor-pointer"
+              className="absolute left-[8px] top-[32px] z-10 box-border flex h-[24px] w-[116px] flex-row items-center justify-center gap-[4px] rounded-[4px] bg-yellow px-[8px] py-[4px] text-b3 text-white cursor-pointer"
             >
-              Upgrade plan
-              <GiftIcon aria-hidden="true" />
+              <span className="h-4 w-[84px] shrink-0 text-center leading-[16px]">Upgrade plan</span>
+              <GiftIcon className="h-3 w-3 shrink-0" aria-hidden="true" />
             </button>
           </>
         )}
@@ -103,34 +105,47 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
   const isProfileActive = location.pathname === "/profile";
 
   const accountSection = (isCollapsed: boolean) => (
-    <div className="flex flex-col gap-[8px] w-full shrink-0 pb-[12px]">
-      <div className="w-full h-0 border-t border-border" />
-      <Link
-        to="/profile"
-        className={`relative group flex items-center rounded-[29px] transition-colors duration-150 ${
-          isCollapsed ? "justify-center px-2 py-2 mx-auto" : "gap-[8px] py-[4px] px-[12px]"
+    <div className="mx-auto flex w-full max-w-[192px] shrink-0 flex-col items-start">
+      {!isCollapsed && <div className="h-[16px] w-full shrink-0" aria-hidden />}
+      <div
+        className={`flex w-full shrink-0 flex-col items-start gap-[8px] box-border pb-[12px] ${
+          isCollapsed ? "" : "h-[72px]"
         }`}
       >
-        {isProfileActive && (
-          <div className="w-[3px] h-[32px] absolute left-0 rounded-tr-[3px] rounded-br-[3px] bg-secondary" />
-        )}
-        <img
-          width={32}
-          height={32}
-          src="/company-logo.png"
-          alt="Company Logo"
-          className="rounded-full object-cover shrink-0"
-        />
-        {!isCollapsed && (
-          <div className="min-w-0 flex-1">
-            <div className="text-[14px] font-normal leading-[24px] text-[#010E27]">
-              William Robertson
-            </div>
-            <div className="text-[14px] font-normal leading-[24px] text-[#7A8395]">Sales</div>
+        <div className="min-h-0 h-0 w-full shrink-0 border-t border-border" aria-hidden />
+        <Link
+          to="/profile"
+          className={`relative isolate flex h-[52px] w-full shrink-0 flex-row items-center rounded-[29px] transition-colors duration-150 ${
+            isCollapsed ? "justify-center px-2" : "justify-start gap-[8px] py-[4px] px-[12px]"
+          }`}
+        >
+          <div
+            className={`absolute left-0 top-[calc(50%-1.5px-14.5px)] z-0 h-[32px] w-[3px] rounded-br-[3px] rounded-tr-[3px] bg-secondary transition-opacity duration-150 ${
+              isProfileActive ? "opacity-100" : "opacity-0"
+            }`}
+          />
+          <div className="relative z-[1] flex h-[44px] w-8 shrink-0 items-center justify-center">
+            <img
+              width={32}
+              height={32}
+              src="/company-logo.png"
+              alt="Company Logo"
+              className="h-8 w-8 rounded-[16px] object-cover"
+            />
           </div>
-        )}
-        {isCollapsed && <span className="sr-only">William Robertson, Sales</span>}
-      </Link>
+          {!isCollapsed && (
+            <div className="relative z-[2] box-border flex h-[44px] w-[128px] shrink-0 flex-col items-start justify-start p-0">
+              <div className="flex h-6 w-[128px] shrink-0 items-center self-stretch text-b2 text-dark -mb-1">
+                William Robertson
+              </div>
+              <div className="flex h-6 w-[128px] shrink-0 flex-row items-center gap-[6px] self-stretch">
+                <span className="h-6 w-[38px] shrink-0 text-b2 text-gray">Sales</span>
+              </div>
+            </div>
+          )}
+          {isCollapsed && <span className="sr-only">William Robertson, Sales</span>}
+        </Link>
+      </div>
     </div>
   );
 

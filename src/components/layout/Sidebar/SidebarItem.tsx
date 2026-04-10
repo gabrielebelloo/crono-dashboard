@@ -32,47 +32,49 @@ export default function SidebarItem({
 
   return (
     <Link
-      className={`group flex h-[32px] w-full items-center rounded-md ${
-        collapsed ? "justify-center" : "justify-between"
-      } py-[4px] transition-colors duration-150`}
+      className={`group flex h-[32px] w-full items-center ${
+        collapsed ? "justify-center" : ""
+      } transition-colors duration-150`}
       to={href}
       title={label}
       onClick={handleClick}
     >
+      {!collapsed && (
+        <div
+          className={`w-[3px] self-stretch rounded-tr-[3px] rounded-br-[3px] shrink-0 transition-colors duration-150 ${
+            isActive ? "bg-secondary" : "bg-transparent"
+          }`}
+        />
+      )}
       <div
-        className={`flex items-center relative ${collapsed ? "justify-center w-full" : "gap-2 px-[13px] flex-1"}`}
+        className={`flex items-center ${
+          collapsed
+            ? "justify-center w-full"
+            : `gap-[8px] py-[4px] pl-[13px] ${isExpandable ? "pr-[16px]" : "pr-[13px]"} flex-1`
+        }`}
       >
-        {isActive && (
-          <div className="w-[3px] h-[32px] absolute left-0 rounded-tr-[3px] rounded-br-[3px] bg-secondary" />
-        )}
         <Icon
           className={`${textColor} shrink-0 transition-colors duration-150`}
           aria-hidden="true"
         />
         {collapsed && <span className="sr-only">{label}</span>}
         {!collapsed && (
-          <span
-            className={`${textColor} font-medium text-sm leading-[18px] transition-colors duration-150`}
-          >
+          <span className={`${textColor} text-s3 transition-colors duration-150 flex-1`}>
             {label}
           </span>
         )}
+        {!collapsed && !!counter && (
+          <div className="flex justify-center items-center text-b3 h-[20px] px-[8px] text-white bg-yellow rounded-[12px]">
+            {counter}
+          </div>
+        )}
+        {!collapsed && isExpandable && (
+          <ArrowIcon
+            className={`${textColor} transition-transform duration-200 ${isExpanded ? "rotate-90" : ""}`}
+            aria-hidden="true"
+          />
+        )}
       </div>
-      {!collapsed && (
-        <div className="flex justify-center items-center gap-2 mr-2">
-          {!!counter && (
-            <div className="flex justify-center items-center font-semibold text-[12px] h-[20px] px-[8px] text-white bg-[#F9BB06] rounded-[12px]">
-              {counter}
-            </div>
-          )}
-          {isExpandable && (
-            <ArrowIcon
-              className={`${textColor} transition-transform duration-200 ${isExpanded ? "rotate-90" : ""}`}
-              aria-hidden="true"
-            />
-          )}
-        </div>
-      )}
     </Link>
   );
 }
