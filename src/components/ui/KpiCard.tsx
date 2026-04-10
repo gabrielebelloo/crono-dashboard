@@ -30,27 +30,23 @@ export default function KpiCard({
   const progressPct = Math.min(max > 0 ? (current / max) * 100 : 0, 100);
 
   return (
-    <div className="flex flex-col justify-between rounded-xl border border-border p-3 gap-2">
-      <div className="flex items-center justify-between">
-        <span className="text-xs font-medium" style={{ color: "#3E485B" }}>
-          {title}
-        </span>
+    <div className="box-border flex h-[71px] w-[184px] max-w-full shrink-0 flex-col rounded-[12px] border border-border p-[8px]">
+      <div className="flex shrink-0 items-center justify-between gap-[4px]">
+        <span className="text-kpi-title min-w-0 truncate">{title}</span>
 
         {tooltip && (
-          <div className="relative flex items-center">
+          <div className="relative flex shrink-0 items-center">
             <button
               type="button"
               aria-label={`Info: ${title}`}
-              className="hover:opacity-70 transition-opacity duration-150 cursor-pointer"
-              style={{ color: "#3E485B" }}
+              className="flex h-4 w-4 shrink-0 cursor-pointer items-center justify-center text-kpiTileLabel transition-opacity duration-150 hover:opacity-70"
               onMouseEnter={() => setShowTooltip(true)}
               onMouseLeave={() => setShowTooltip(false)}
               onFocus={() => setShowTooltip(true)}
               onBlur={() => setShowTooltip(false)}
             >
               <svg
-                width="16"
-                height="16"
+                className="h-4 w-4"
                 viewBox="0 0 16 16"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +58,7 @@ export default function KpiCard({
                   y="11.5"
                   textAnchor="middle"
                   fontSize="8"
-                  fontWeight="600"
+                  fontWeight="500"
                   fontFamily="Poppins, sans-serif"
                   fill="currentColor"
                 >
@@ -88,22 +84,22 @@ export default function KpiCard({
         )}
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="mt-[4px] flex shrink-0 items-center gap-[8px]">
         {Icon && (
-          <Icon className="h-[20px] w-[20px] shrink-0" style={{ color }} aria-hidden="true" />
+          <Icon className="h-[18px] w-[18px] shrink-0" style={{ color }} aria-hidden="true" />
         )}
-        <div className="flex items-baseline gap-[2px]">
-          <span className="font-medium leading-6" style={{ color, fontSize: "16px" }}>
+        <div className="flex min-w-0 items-baseline gap-[2px]">
+          <span className="text-kpi-metric truncate" style={{ color }}>
             {prefix}
             {formatNumber(current, suffix)}
           </span>
-          <span className="font-medium leading-6 text-gray" style={{ fontSize: "16px" }}>
-            /{formatNumber(max, suffix)}
-          </span>
+          <span className="text-kpi-metric truncate text-gray">/{formatNumber(max, suffix)}</span>
         </div>
       </div>
 
-      <div className="h-[3px] w-full rounded-full bg-border overflow-hidden">
+      <div className="min-h-0 flex-1" aria-hidden />
+
+      <div className="h-[3px] w-full shrink-0 overflow-hidden rounded-full bg-border">
         <div
           className="h-full rounded-full transition-[width] duration-500 ease-out"
           style={{ width: `${progressPct}%`, backgroundColor: color }}

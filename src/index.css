@@ -11,18 +11,56 @@
   --bg-color: #f5f7f9;
   --border-color: #e6e9f2;
   --yellow-color: #f9bb06;
+  --gray-hover-1-color: #3e485b;
+  /* KPI tile row labels (Contacts engaged, etc.) — same as Figma fill #3E485B */
+  --kpi-tile-label-color: var(--gray-hover-1-color);
+  --avatar-ring-color: #d5e0f0;
+  --stack-blue-color: #3b85e8;
+  /* Today’s tasks — tile fills + metric colors (Figma) */
+  --task-overdue-bg: #ffe9e9;
+  --task-overdue-text: #ed4c5e;
+  --task-pending-manual-bg: #fef3d2;
+  --task-pending-manual-text: #c69812;
+  --task-pending-auto-bg: #eaf1fb;
+  --task-completed-bg: #e8f5d9;
+  --task-completed-text: #1a9d6e;
+}
+
+@utility text-h1 {
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: 0;
+}
+
+@utility text-b1 {
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
 }
 
 @utility text-s2 {
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 22px;
+  letter-spacing: 0;
 }
 
+/* Subheading / S3-Medium — card header actions (Open inbox, Edit KPIs, …) */
 @utility text-s3 {
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
+  letter-spacing: 0;
 }
 
 @utility text-b2 {
@@ -35,9 +73,52 @@
 }
 
 @utility text-b3 {
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  letter-spacing: 0;
+}
+
+/* KPI tile label + metric (May's Performance grid) */
+@utility text-kpi-title {
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
+  color: var(--kpi-tile-label-color);
+}
+
+@utility text-kpi-metric {
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0;
+}
+
+/* Today’s tasks row */
+@utility text-task-count {
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: 0;
+}
+
+@utility text-task-label {
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0;
+  color: var(--kpi-tile-label-color);
 }
 
 body {

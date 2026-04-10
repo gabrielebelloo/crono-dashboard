@@ -90,7 +90,7 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
 
           {open && (
             <div
-              className="absolute right-0 top-full mt-2 z-30 w-[216px] rounded-2xl border border-border bg-white"
+              className="absolute right-0 top-full z-30 mt-[8px] w-[216px] rounded-[15.5px] border border-border bg-white"
               style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)" }}
             >
               <div className="flex flex-col gap-1 p-2">

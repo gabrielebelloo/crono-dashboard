@@ -71,12 +71,16 @@ export default function SidebarItem({
           </div>
         )}
         {!collapsed && isExpandable && (
-          <ArrowIcon
-            className={`${textColor} transition-transform duration-200 ${
-              isExpanded ? "rotate-[270deg]" : "rotate-90"
-            }`}
-            aria-hidden="true"
-          />
+          <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center overflow-visible">
+            <ArrowIcon
+              className={`${textColor} size-6 origin-center transition-transform duration-200 ease-out motion-reduce:transition-none ${
+                isExpanded ? "-rotate-90" : "rotate-90"
+              }`}
+              width={24}
+              height={24}
+              aria-hidden="true"
+            />
+          </span>
         )}
       </div>
     </Link>

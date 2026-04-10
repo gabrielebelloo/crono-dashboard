@@ -3,6 +3,7 @@ import { sidebarIcons } from "../components/layout/Sidebar/sidebarIcons";
 import ContactsIcon from "../assets/kpi-icons/contacts.svg?react";
 import CompaniesIcon from "../assets/kpi-icons/companies.svg?react";
 import MeetingsIcon from "../assets/kpi-icons/meetings.svg?react";
+import DealsKpiIcon from "../assets/kpi-icons/deals.svg?react";
 
 export const kpiItems: KpiCardProps[] = [
   {
@@ -36,7 +37,7 @@ export const kpiItems: KpiCardProps[] = [
   },
   {
     title: "Deals",
-    icon: sidebarIcons.deals,
+    icon: DealsKpiIcon,
     color: "#EC4899",
     current: 100,
     max: 200,
