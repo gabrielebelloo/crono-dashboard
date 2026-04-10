@@ -54,7 +54,7 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
 
   const sidebarContent = (
     <aside
-      className="flex shrink-0 flex-col bg-white h-screen border-r border-border transition-[width] ease-out"
+      className="flex shrink-0 flex-col bg-white h-dvh border-r border-border transition-[width] ease-out"
       style={{ width: SIDEBAR_UNCOLLAPSED_W }}
     >
       <div className="flex justify-between items-center pt-[22px] pr-[8px] pb-[22px] pl-[16px]">
