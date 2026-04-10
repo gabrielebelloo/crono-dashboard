@@ -1,6 +1,7 @@
 import Card from "../../components/ui/Card";
 import KpiCard from "../../components/ui/KpiCard";
 import TaskCard from "../../components/ui/TaskCard";
+import OnboardingItem from "../../components/ui/OnboardingItem";
 import ArrowIcon from "../../assets/arrow.svg?react";
 import EditIcon from "../../assets/edit.svg?react";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +12,7 @@ import McLogo from "../../assets/mc-logo.svg?react";
 import MediumLogo from "../../assets/medium-logo.svg?react";
 import { kpiItems } from "../../data/kpiItems";
 import { taskItems } from "../../data/taskItems";
+import { onboardingItems } from "../../data/onboardingItems";
 
 export default function DashboardPage() {
   const navigate = useNavigate();
@@ -91,7 +93,11 @@ export default function DashboardPage() {
       </Card>
 
       <Card headerTitle="Onboarding" className="xl:col-span-4">
-        test
+        <div className="flex flex-col divide-y divide-border">
+          {onboardingItems.map((item) => (
+            <OnboardingItem key={item.label} {...item} />
+          ))}
+        </div>
       </Card>
     </div>
   );
