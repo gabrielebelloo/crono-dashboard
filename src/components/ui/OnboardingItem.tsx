@@ -1,17 +1,11 @@
 export type OnboardingItemProps = {
   icon: string;
   label: string;
-  /** Estimated duration, e.g. "5 min" */
   duration: string;
   onClick?: () => void;
 };
 
-export default function OnboardingItem({
-  icon,
-  label,
-  duration,
-  onClick,
-}: OnboardingItemProps) {
+export default function OnboardingItem({ icon, label, duration, onClick }: OnboardingItemProps) {
   return (
     <button
       type="button"

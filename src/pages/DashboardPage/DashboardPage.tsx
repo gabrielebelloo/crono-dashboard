@@ -2,6 +2,7 @@ import Card from "../../components/ui/Card";
 import KpiCard from "../../components/ui/KpiCard";
 import TaskCard from "../../components/ui/TaskCard";
 import OnboardingItem from "../../components/ui/OnboardingItem";
+import SignalItem from "../../components/ui/SignalItem";
 import ArrowIcon from "../../assets/arrow.svg?react";
 import EditIcon from "../../assets/edit.svg?react";
 import { useNavigate } from "react-router-dom";
@@ -13,9 +14,11 @@ import MediumLogo from "../../assets/medium-logo.svg?react";
 import { kpiItems } from "../../data/kpiItems";
 import { taskItems } from "../../data/taskItems";
 import { onboardingItems } from "../../data/onboardingItems";
+import { useSignals } from "../../hooks/useSignals";
 
 export default function DashboardPage() {
   const navigate = useNavigate();
+  const { signals, complete, remove } = useSignals();
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-12 gap-2">
@@ -72,10 +75,7 @@ export default function DashboardPage() {
         </div>
       </Card>
 
-      <Card
-        headerTitle="Today's tasks"
-        className="xl:col-span-8"
-      >
+      <Card headerTitle="Today's tasks" className="xl:col-span-8">
         <div className="flex mt-1">
           {taskItems.map((item, idx) => (
             <>
@@ -88,8 +88,23 @@ export default function DashboardPage() {
         </div>
       </Card>
 
-      <Card headerTitle="Signals" headerCounter={12} className="xl:col-span-8">
-        test
+      <Card
+        headerTitle="Signals"
+        headerCounter={signals.length}
+        className="xl:col-span-8 max-h-[412px] overflow-hidden"
+      >
+        <p className="text-[14px] font-normal leading-[24px] text-gray mb-1 shrink-0">
+          Never miss a single opportunity: check out your top signals from your 1st-degree LinkedIn
+          connections.
+        </p>
+        <div className="flex-1 min-h-0 overflow-y-auto flex flex-col divide-y divide-border -mx-4">
+          {signals.map((signal) => (
+            <SignalItem key={signal.id} signal={signal} onComplete={complete} onDelete={remove} />
+          ))}
+          {signals.length === 0 && (
+            <p className="py-6 text-center text-sm text-gray">All signals handled — great work!</p>
+          )}
+        </div>
       </Card>
 
       <Card headerTitle="Onboarding" className="xl:col-span-4">

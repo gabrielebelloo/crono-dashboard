@@ -62,7 +62,7 @@ export default function SidebarItem({
       {!collapsed && (
         <div className="flex justify-center items-center gap-2 mr-2">
           {!!counter && (
-            <div className="flex justify-center items-center font-medium text-[12px] h-[20px] px-[8px] text-white bg-yellow-500 rounded-[12px]">
+            <div className="flex justify-center items-center font-semibold text-[12px] h-[20px] px-[8px] text-white bg-[#F9BB06] rounded-[12px]">
               {counter}
             </div>
           )}
