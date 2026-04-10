@@ -63,14 +63,18 @@ export default function SidebarItem({
             {label}
           </span>
         )}
-        {!collapsed && !!counter && (
-          <div className="flex justify-center items-center text-b3 h-[20px] px-[8px] text-white bg-yellow rounded-[12px]">
-            {counter}
+        {!collapsed && counter != null && (
+          <div className="box-border flex h-[20px] w-[31px] shrink-0 flex-col items-center justify-center gap-[10px] rounded-[12px] bg-yellow px-[8px] py-1 text-white">
+            <span className="flex h-4 w-[15px] shrink-0 items-center justify-center text-b3 leading-[16px] tabular-nums">
+              {counter}
+            </span>
           </div>
         )}
         {!collapsed && isExpandable && (
           <ArrowIcon
-            className={`${textColor} transition-transform duration-200 ${isExpanded ? "rotate-90" : ""}`}
+            className={`${textColor} transition-transform duration-200 ${
+              isExpanded ? "rotate-[270deg]" : "rotate-90"
+            }`}
             aria-hidden="true"
           />
         )}
