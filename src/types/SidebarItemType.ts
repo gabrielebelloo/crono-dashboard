@@ -5,6 +5,5 @@ export type SidebarItemType = {
   label: string;
   href: string;
   counter?: number;
-  expandable?: boolean;
-  isExpanded?: boolean;
+  isExpandable?: boolean;
 };

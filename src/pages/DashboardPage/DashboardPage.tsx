@@ -2,6 +2,11 @@ import Card from "../../components/ui/Card";
 import ArrowIcon from "../../assets/arrow.svg?react";
 import EditIcon from "../../assets/edit.svg?react";
 import { useNavigate } from "react-router-dom";
+import { sidebarIcons } from "../../components/layout/Sidebar/sidebarIcons";
+import RedditLogo from "../../assets/reddit-logo.svg?react";
+import AmazonLogo from "../../assets/amazon-logo.svg?react";
+import McLogo from "../../assets/mc-logo.svg?react";
+import MediumLogo from "../../assets/medium-logo.svg?react";
 
 export default function DashboardPage() {
   const navigate = useNavigate();
@@ -24,7 +29,28 @@ export default function DashboardPage() {
         headerActionFunc={() => navigate("/inbox")}
         className="xl:col-span-4"
       >
-        <Card className="h-[80px] bg-light">test</Card>
+        <Card className="h-[80px] bg-light">
+          <div className="flex items-center justify-between h-full px-2">
+            <div className="flex items-center gap-4">
+              <div className="h-[48px] w-[48px] rounded-[24px] bg-hover flex justify-center items-center">
+                <sidebarIcons.inbox className="text-main w-[24px] h-[24px]" />
+              </div>
+              <div className="text-[36px] font-medium leading-none">24</div>
+            </div>
+
+            <div className="flex items-center -space-x-3">
+              {[RedditLogo, AmazonLogo, McLogo, MediumLogo].map((Logo, idx) => (
+                <div
+                  key={idx}
+                  className="h-8 w-8 rounded-full border border-[#D5E0F0] bg-white flex items-center justify-center overflow-hidden"
+                  aria-hidden="true"
+                >
+                  <Logo className="h-full w-full" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </Card>
       </Card>
 
       <Card

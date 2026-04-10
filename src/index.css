@@ -5,12 +5,25 @@
   --main-color: #1ebab2;
   --secondary-color: #0a9b94;
   --light-color: #e9f8f8;
+  --hover-color: #ceeded;
   --gray-color: #7a8395;
   --bg-color: #f5f7f9;
   --border-color: #e6e9f2;
+  --trial-cta-yellow: #fdb913;
 }
 
 body {
   margin: 0;
   background-color: var(--bg-color);
+}
+
+.mask-contain-top-right {
+  -webkit-mask-image: var(--mask-image);
+  mask-image: var(--mask-image);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: right top;
+  mask-position: right top;
 }

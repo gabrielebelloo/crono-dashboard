@@ -32,7 +32,7 @@ export default function Card({
           {!!headerActionName && (
             <button
               onClick={headerActionFunc}
-              className="flex justify between items-center gap-1 text-main text-sm cursor-pointer"
+              className="flex justify between items-center gap-1 text-main text-sm font-medium cursor-pointer"
             >
               {headerActionName}
               {HeaderActionIcon && <HeaderActionIcon />}

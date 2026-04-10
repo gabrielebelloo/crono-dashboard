@@ -5,12 +5,18 @@ import CronoLogo from "../../../assets/crono-logo-transparent.svg?react";
 import CronoLogoMark from "../../../assets/crono-logo-mark.svg?react";
 import ArrowForwardIcon from "../../../assets/arrow-forward.svg?react";
 import GiftIcon from "../../../assets/gift-icon.svg?react";
+import cloudPng from "../../../assets/cloud.png";
 
 const SIDEBAR_COLLAPSED_W = 64;
 const SIDEBAR_UNCOLLAPSED_W = 192;
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
+  const [expandedItem, setExpandedItem] = useState<string | null>(null);
+
+  const toggleItem = (id: string) => {
+    setExpandedItem((prev) => (prev === id ? null : id));
+  };
 
   const sidebarItems: SidebarItemType[] = [
     { id: "dashboard", label: "Dashboard", href: "/dashboard" },
@@ -21,7 +27,7 @@ export default function Sidebar() {
     { id: "tasks", label: "Tasks", href: "/tasks" },
     { id: "inbox", label: "Inbox", href: "/inbox", counter: 24 },
     { id: "deals", label: "Deals", href: "/deals" },
-    { id: "analytics", label: "Analytics", href: "/analytics" },
+    { id: "analytics", label: "Analytics", href: "/analytics", isExpandable: true },
   ];
 
   const widthPx = collapsed ? SIDEBAR_COLLAPSED_W : SIDEBAR_UNCOLLAPSED_W;
@@ -61,19 +67,58 @@ export default function Sidebar() {
 
       <nav className={`flex flex-col gap-[8px] ${collapsed ? "items-center px-0" : ""}`}>
         {sidebarItems.map((item) => (
-          <SidebarItem key={item.href} {...item} collapsed={collapsed} />
+          <SidebarItem
+            key={item.href}
+            {...item}
+            collapsed={collapsed}
+            isExpanded={expandedItem === item.id}
+            onToggle={() => toggleItem(item.id)}
+            onNavigate={() => setExpandedItem(null)}
+          />
         ))}
       </nav>
 
-      {!collapsed && (
-        <div className="mt-4 w-[176px] h-[64px] bg-[#FEF3D2] mx-auto rounded-md p-[8px]">
-          <div className="text-sm font-medium">Trial ends in 2 days</div>
-          <button className="flex items-center bg-yellow-500 py-[4px] px-[8px] gap-[4px] text-[12px] text-white rounded-[8px] cursor-pointer">
-            Upgrade plan
-            <GiftIcon />
-          </button>
+      <div className={`${collapsed ? "mt-4 px-2" : "mt-4"}`}>
+        <div
+          className={
+            collapsed
+              ? "relative w-full h-[48px] bg-[#FEF3D2] mx-auto rounded-md flex items-center justify-center overflow-hidden"
+              : "relative w-[176px] h-[64px] bg-[#FEF3D2] mx-auto rounded-md p-[8px] overflow-hidden"
+          }
+          title="Trial ends in 2 days"
+        >
+          <div
+            aria-hidden="true"
+            className={`mask-contain-top-right pointer-events-none absolute right-0 top-0 bg-trialCta opacity-60 ${
+              collapsed
+                ? "h-[56px] w-[49px] translate-x-2 -translate-y-1"
+                : "h-[67px] w-[49px] translate-x-3 -translate-y-2"
+            }`}
+            style={{ ["--mask-image" as any]: `url(${cloudPng})` }}
+          />
+
+          {collapsed ? (
+            <>
+              <button
+                className="relative z-10 flex h-9 w-9 items-center justify-center rounded-md bg-trialCta text-white cursor-pointer"
+                type="button"
+                aria-label="Upgrade plan. Trial ends in 2 days"
+              >
+                <GiftIcon aria-hidden="true" />
+              </button>
+              <span className="sr-only">Trial ends in 2 days</span>
+            </>
+          ) : (
+            <>
+              <div className="relative z-10 text-sm font-medium">Trial ends in 2 days</div>
+              <button className="relative z-10 flex items-center bg-trialCta py-[4px] px-[8px] gap-[4px] text-[12px] text-white rounded-[8px] cursor-pointer">
+                Upgrade plan
+                <GiftIcon aria-hidden="true" />
+              </button>
+            </>
+          )}
         </div>
-      )}
+      </div>
 
       <div className="min-h-0 flex-1" aria-hidden="true" />
 
