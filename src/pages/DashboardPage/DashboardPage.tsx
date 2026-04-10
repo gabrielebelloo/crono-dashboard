@@ -122,11 +122,16 @@ export default function DashboardPage() {
 
         <Card
           headerTitle="Onboarding"
-          className="md:col-span-2 box-border flex w-full min-w-0 flex-col overflow-hidden lg:h-[412px] lg:w-[408px] lg:max-w-[408px] lg:shrink-0"
+          className="md:col-span-2 box-border flex max-h-[60vh] w-full min-w-0 flex-col overflow-hidden !rounded-[16px] lg:max-h-none lg:h-[412px] lg:w-[408px] lg:max-w-[408px] lg:shrink-0"
         >
-          <div className="flex min-h-0 flex-1 flex-col divide-y divide-border overflow-y-auto">
-            {onboardingItems.map((item) => (
-              <OnboardingItem key={item.label} {...item} />
+          <div className="mt-1 flex min-h-0 min-w-0 flex-1 flex-col items-start gap-4 overflow-y-auto">
+            {onboardingItems.map((item, idx) => (
+              <Fragment key={item.label}>
+                <OnboardingItem {...item} />
+                {idx < onboardingItems.length - 1 && (
+                  <div className="h-px w-[373px] max-w-full shrink-0 bg-border" aria-hidden />
+                )}
+              </Fragment>
             ))}
           </div>
         </Card>

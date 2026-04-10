@@ -8,12 +8,12 @@ import runFirstTask from "../assets/onboarding/run-your-first-task.png";
 export const onboardingItems: OnboardingItemProps[] = [
   {
     icon: integrationsSetup,
-    label: "Integrations setup",
+    label: "Integrations Setup",
     duration: "5 min",
   },
   {
     icon: addNewContact,
-    label: "Add new contact",
+    label: "Add new Contact",
     duration: "5 min",
   },
   {
