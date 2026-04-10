@@ -1,10 +1,10 @@
-import DashboardPage from "./pages/DashboardPage/DashboardPage";
+import Router from "./router/Router"; 
 import AppLayout from "./components/layout/AppLayout";
 
 function App() {
   return (
     <AppLayout>
-      <DashboardPage />
+      <Router />
     </AppLayout>
   );
 }

@@ -9,6 +9,7 @@ export default {
       colors: {
         main: "var(--main-color)",
         secondary: "var(--secondary-color)",
+        light: "var(--light-color)",
         gray: "var(--gray-color)",
         bg: "var(--bg-color)",
         border: "var(--border-color)",

@@ -1,8 +1,11 @@
 import Card from "../../components/ui/Card";
 import ArrowIcon from "../../assets/arrow.svg?react";
 import EditIcon from "../../assets/edit.svg?react";
+import { useNavigate } from "react-router-dom";
 
 export default function DashboardPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="grid grid-cols-1 xl:grid-cols-12 gap-2">
       <Card className="xl:col-span-4">
@@ -16,16 +19,17 @@ export default function DashboardPage() {
 
       <Card
         headerTitle="Replies"
-        headerAction="Open inbox"
+        headerActionName="Open inbox"
         headerActionIcon={ArrowIcon}
+        headerActionFunc={() => navigate("/inbox")}
         className="xl:col-span-4"
       >
-        test
+        <Card className="h-[80px] bg-light">test</Card>
       </Card>
 
       <Card
         headerTitle="May's Performance"
-        headerAction="Edit KPIs"
+        headerActionName="Edit KPIs"
         headerActionIcon={EditIcon}
         className="xl:col-span-4 xl:row-span-2"
       >
