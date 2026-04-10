@@ -77,7 +77,6 @@ export default function KpiCard({
                 className="absolute left-1/2 -translate-x-1/2 top-full mt-2 z-20 w-[246px] rounded-[4px] px-4 py-2 text-xs text-white leading-[18px]"
                 style={{ background: "#151618" }}
               >
-                {/* Caret — top center pointing up */}
                 <span
                   className="absolute left-1/2 -translate-x-1/2 bottom-full h-0 w-0 border-x-[5px] border-b-[5px] border-x-transparent"
                   style={{ borderBottomColor: "#151618" }}

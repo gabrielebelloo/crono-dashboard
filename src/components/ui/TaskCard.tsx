@@ -21,7 +21,7 @@ export default function TaskCard({
     <button
       type="button"
       onClick={onClick}
-      className={`flex flex-col justify-between rounded-xl p-3 gap-3 cursor-pointer w-full text-left transition-opacity duration-150 hover:opacity-90 ${bgClass}`}
+      className={`flex flex-col justify-between rounded-xl p-3 gap-3 cursor-pointer w-full min-w-[140px] flex-1 text-left transition-opacity duration-150 hover:opacity-90 ${bgClass}`}
     >
       <div className="flex items-center justify-between">
         <span className={`text-[28px] font-semibold leading-none ${colorClass}`}>{count}</span>

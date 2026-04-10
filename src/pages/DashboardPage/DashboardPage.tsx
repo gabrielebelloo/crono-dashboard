@@ -22,8 +22,8 @@ export default function DashboardPage() {
   const { signals, complete, remove } = useSignals();
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-12 gap-2">
-      <Card className="xl:col-span-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-2">
+      <Card className="md:col-span-1 lg:col-span-4">
         <div className="py-4 px-[18px]">
           <div className="text-[24px] font-bold">Welcome Alex,</div>
           <div className="text-md text-gray">
@@ -37,7 +37,7 @@ export default function DashboardPage() {
         headerActionName="Open inbox"
         headerActionIcon={ArrowIcon}
         headerActionFunc={() => navigate("/inbox")}
-        className="xl:col-span-4"
+        className="md:col-span-1 lg:col-span-4"
       >
         <Card className="h-[80px] bg-light">
           <div className="flex items-center justify-between h-full px-2">
@@ -67,7 +67,7 @@ export default function DashboardPage() {
         headerTitle="May's Performance"
         headerActionName="Edit KPIs"
         headerActionIcon={EditIcon}
-        className="xl:col-span-4 xl:row-span-2"
+        className="md:col-span-2 lg:col-span-4 lg:row-span-2"
       >
         <div className="grid grid-cols-2 gap-2 mt-1">
           {kpiItems.map((item) => (
@@ -76,13 +76,11 @@ export default function DashboardPage() {
         </div>
       </Card>
 
-      <Card headerTitle="Today's tasks" className="xl:col-span-8">
-        <div className="flex mt-1">
+      <Card headerTitle="Today's tasks" className="md:col-span-2 lg:col-span-8">
+        <div className="flex flex-wrap gap-2 mt-1">
           {taskItems.map((item, idx) => (
             <Fragment key={item.label}>
-              {idx > 0 && (
-                <div className="w-px self-stretch bg-border shrink-0 mx-2" />
-              )}
+              {idx > 0 && <div className="w-px self-stretch bg-border shrink-0 hidden lg:block" />}
               <TaskCard {...item} onClick={() => navigate("/tasks")} />
             </Fragment>
           ))}
@@ -92,7 +90,7 @@ export default function DashboardPage() {
       <Card
         headerTitle="Signals"
         headerCounter={signals.length}
-        className="xl:col-span-8 max-h-[412px] overflow-hidden"
+        className="md:col-span-2 lg:col-span-8 max-h-[60vh] lg:max-h-[412px] overflow-hidden"
       >
         <p className="text-[14px] font-normal leading-[24px] text-gray mb-1 shrink-0">
           Never miss a single opportunity: check out your top signals from your 1st-degree LinkedIn
@@ -108,7 +106,7 @@ export default function DashboardPage() {
         </div>
       </Card>
 
-      <Card headerTitle="Onboarding" className="xl:col-span-4">
+      <Card headerTitle="Onboarding" className="md:col-span-2 lg:col-span-4">
         <div className="flex flex-col divide-y divide-border">
           {onboardingItems.map((item) => (
             <OnboardingItem key={item.label} {...item} />

@@ -43,7 +43,7 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
   }, [open]);
 
   return (
-    <div className="flex items-center gap-12 px-4 py-2">
+    <div className="flex items-center gap-4 lg:gap-12 px-4 py-2">
       <div className="flex items-center gap-4 flex-1 min-w-0">
         <Avatar avatar={signal.avatar} />
 
@@ -75,7 +75,7 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
       </div>
 
       <div className="flex items-center gap-4 shrink-0">
-        <span className="text-[11px] font-medium leading-[14px] text-gray whitespace-nowrap">
+        <span className="hidden md:inline text-[11px] font-medium leading-[14px] text-gray whitespace-nowrap">
           {signal.date}
         </span>
 

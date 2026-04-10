@@ -1,6 +1,5 @@
 export type DescriptionPart = {
   text: string;
-  /** Renders in teal (--main-color) */
   highlight?: boolean;
 };
 
