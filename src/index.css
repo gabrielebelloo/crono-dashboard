@@ -81,6 +81,16 @@
   letter-spacing: 0;
 }
 
+/* Body / B5-Medium — signal row dates */
+@utility text-b5 {
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0;
+}
+
 /* KPI tile label + metric (May's Performance grid) */
 @utility text-kpi-title {
   font-family: Poppins, ui-sans-serif, system-ui, sans-serif;

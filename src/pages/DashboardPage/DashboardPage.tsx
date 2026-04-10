@@ -94,18 +94,26 @@ export default function DashboardPage() {
         <Card
           headerTitle="Signals"
           headerCounter={signals.length}
-          className="md:col-span-2 box-border flex max-h-[60vh] w-full min-w-0 flex-col overflow-hidden lg:max-h-[412px] lg:h-[412px] lg:w-[800px] lg:max-w-[800px] lg:shrink-0"
+          subheader={
+            <p className="min-w-0 text-b2 text-gray">
+              Never miss a single opportunity: check out your top signals from your 1st-degree
+              LinkedIn connections.
+            </p>
+          }
+          className="md:col-span-2 box-border flex max-h-[60vh] w-full min-w-0 flex-col gap-3 overflow-hidden !rounded-[16px] !p-0 !pb-0 !pt-4 lg:max-h-[412px] lg:h-[412px] lg:w-[800px] lg:max-w-[800px] lg:shrink-0"
         >
-          <p className="mb-[4px] shrink-0 text-b2 text-gray">
-            Never miss a single opportunity: check out your top signals from your 1st-degree
-            LinkedIn connections.
-          </p>
-          <div className="-mx-[16px] flex min-h-0 min-w-0 flex-1 flex-col divide-y divide-border overflow-y-auto">
-            {signals.map((signal) => (
-              <SignalItem key={signal.id} signal={signal} onComplete={complete} onDelete={remove} />
+          <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-4 overflow-y-auto pr-1">
+            {signals.map((signal, idx) => (
+              <SignalItem
+                key={signal.id}
+                signal={signal}
+                onComplete={complete}
+                onDelete={remove}
+                showDivider={idx < signals.length - 1}
+              />
             ))}
             {signals.length === 0 && (
-              <p className="py-[24px] text-center text-sm text-gray">
+              <p className="px-4 py-6 text-center text-sm text-gray">
                 All signals handled, great work!
               </p>
             )}

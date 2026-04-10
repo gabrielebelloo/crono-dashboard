@@ -7,11 +7,12 @@ type Props = {
   signal: Signal;
   onComplete: (id: string) => void;
   onDelete: (id: string) => void;
+  showDivider?: boolean;
 };
 
 function Avatar({ avatar }: { avatar: Signal["avatar"] }) {
   const base =
-    "h-8 w-8 shrink-0 rounded-full flex items-center justify-center overflow-hidden border border-[#D5E0F0]";
+    "box-border flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-[16px] border border-avatarRing";
   if (avatar.type === "logo") {
     const Logo = avatar.logo;
     return (
@@ -22,12 +23,12 @@ function Avatar({ avatar }: { avatar: Signal["avatar"] }) {
   }
   return (
     <div className={`${base} ${avatar.bgClass}`}>
-      <span className="text-[11px] font-semibold text-white leading-none">{avatar.initials}</span>
+      <span className="text-[11px] font-semibold leading-none text-white">{avatar.initials}</span>
     </div>
   );
 }
 
-export default function SignalItem({ signal, onComplete, onDelete }: Props) {
+export default function SignalItem({ signal, onComplete, onDelete, showDivider = true }: Props) {
   const [open, setOpen] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
 
@@ -43,85 +44,92 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
   }, [open]);
 
   return (
-    <div className="flex items-center gap-4 lg:gap-12 px-4 py-2">
-      <div className="flex items-center gap-4 flex-1 min-w-0">
-        <div className="relative shrink-0">
-          <Avatar avatar={signal.avatar} />
-          <span className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-yellow ring-2 ring-white" />
+    <div className="flex w-full flex-col gap-[10px] px-4">
+      <div className="flex min-h-10 w-full items-center gap-12">
+        <div className="flex min-w-0 flex-1 items-center gap-4">
+          <div className="relative shrink-0 self-center">
+            <Avatar avatar={signal.avatar} />
+            <span
+              className="absolute left-0 top-1 h-1.5 w-1.5 rounded-full bg-yellow ring-2 ring-white"
+              aria-hidden
+            />
+          </div>
+
+          <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+            <p className="text-s2 text-dark">
+              {signal.description.map((part, i) => (
+                <span key={i} className={part.highlight ? "text-main" : undefined}>
+                  {part.text}
+                </span>
+              ))}
+            </p>
+
+            <div className="flex flex-wrap items-center gap-1">
+              {signal.tags.map((tag) => (
+                <span key={tag.label} className={`text-b3 ${tag.colorClass}`}>
+                  {tag.label}
+                </span>
+              ))}
+              {signal.inSequence && (
+                <span className="rounded-[12px] bg-light px-1 py-0.5 text-[10px] font-medium leading-3 text-secondary">
+                  In sequence
+                </span>
+              )}
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-[2px] min-w-0">
-          <p className="text-s2 text-dark">
-            {signal.description.map((part, i) => (
-              <span key={i} className={part.highlight ? "text-main" : ""}>
-                {part.text}
-              </span>
-            ))}
-          </p>
+        <div className="flex h-8 shrink-0 items-center gap-4">
+          <span className="text-b5 whitespace-nowrap text-gray">{signal.date}</span>
 
-          <div className="flex items-center gap-1 flex-wrap">
-            {signal.tags.map((tag) => (
-              <span key={tag.label} className={`text-b3 ${tag.colorClass}`}>
-                {tag.label}
-              </span>
-            ))}
-            {signal.inSequence && (
-              <span className="text-[10px] font-medium leading-[12px] text-[#0A9B94] bg-light px-1 py-[2px] rounded-full">
-                In sequence
-              </span>
+          <div className="relative" ref={popoverRef}>
+            <button
+              type="button"
+              onClick={() => setOpen((p) => !p)}
+              className="box-border flex h-8 w-[90px] shrink-0 cursor-pointer items-center justify-center rounded-[34px] bg-main px-4 py-[7px] text-s3 text-white transition-opacity duration-150 hover:opacity-90 active:opacity-80"
+            >
+              Action
+            </button>
+
+            {open && (
+              <div
+                className="absolute right-0 top-full z-30 mt-2 w-[216px] rounded-[15.5px] border border-border bg-white"
+                style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)" }}
+              >
+                <div className="flex flex-col gap-1 p-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onComplete(signal.id);
+                      setOpen(false);
+                    }}
+                    className="flex h-10 w-full cursor-pointer items-center justify-between rounded-lg px-2 py-2 text-b3 text-secondary transition-colors duration-150 hover:bg-light active:opacity-80"
+                  >
+                    Complete
+                    <CheckmarkIcon className="h-6 w-6 shrink-0" aria-hidden="true" />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onDelete(signal.id);
+                      setOpen(false);
+                    }}
+                    className="flex h-10 w-full cursor-pointer items-center justify-between rounded-lg px-2 py-2 text-b3 text-dark transition-colors duration-150 hover:bg-red-50 hover:text-red-500 active:opacity-80"
+                  >
+                    Delete
+                    <RemoveIcon className="h-6 w-6 shrink-0" aria-hidden="true" />
+                  </button>
+                </div>
+              </div>
             )}
           </div>
         </div>
       </div>
 
-      <div className="flex items-center gap-4 shrink-0">
-        <span className="hidden md:inline text-[11px] font-medium leading-[14px] text-gray whitespace-nowrap">
-          {signal.date}
-        </span>
-
-        <div className="relative" ref={popoverRef}>
-          <button
-            type="button"
-            onClick={() => setOpen((p) => !p)}
-            className="h-8 px-4 rounded-[34px] bg-main text-white text-s3 cursor-pointer hover:opacity-90 active:opacity-80 transition-opacity duration-150"
-          >
-            Action
-          </button>
-
-          {open && (
-            <div
-              className="absolute right-0 top-full z-30 mt-[8px] w-[216px] rounded-[15.5px] border border-border bg-white"
-              style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)" }}
-            >
-              <div className="flex flex-col gap-1 p-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    onComplete(signal.id);
-                    setOpen(false);
-                  }}
-                  className="flex items-center justify-between w-full px-2 py-2 h-10 rounded-lg text-secondary text-b3 cursor-pointer hover:bg-light active:opacity-80 transition-colors duration-150"
-                >
-                  Complete
-                  <CheckmarkIcon className="h-6 w-6 shrink-0" aria-hidden="true" />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    onDelete(signal.id);
-                    setOpen(false);
-                  }}
-                  className="flex items-center justify-between w-full px-2 py-2 h-10 rounded-lg text-dark text-b3 cursor-pointer hover:bg-red-50 hover:text-red-500 active:opacity-80 transition-colors duration-150"
-                >
-                  Delete
-                  <RemoveIcon className="h-6 w-6 shrink-0" aria-hidden="true" />
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+      {showDivider && (
+        <div className="h-px w-full max-w-[796px] self-center bg-border" aria-hidden />
+      )}
     </div>
   );
 }

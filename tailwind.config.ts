@@ -20,6 +20,8 @@ export default {
         kpiTileLabel: "var(--kpi-tile-label-color)",
         avatarRing: "var(--avatar-ring-color)",
         stackBlue: "var(--stack-blue-color)",
+        signalPurple: "#8846DC",
+        signalPink: "#E769CB",
         taskOverdueBg: "var(--task-overdue-bg)",
         taskOverdueText: "var(--task-overdue-text)",
         taskPendingManualBg: "var(--task-pending-manual-bg)",
