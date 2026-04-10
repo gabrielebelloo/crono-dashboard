@@ -1,6 +1,6 @@
 export type DescriptionPart = {
   text: string;
-  bold?: boolean;
+  /** Renders in teal (--main-color) */
   highlight?: boolean;
 };
 

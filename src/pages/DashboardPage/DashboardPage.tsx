@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Card from "../../components/ui/Card";
 import KpiCard from "../../components/ui/KpiCard";
 import TaskCard from "../../components/ui/TaskCard";
@@ -78,12 +79,12 @@ export default function DashboardPage() {
       <Card headerTitle="Today's tasks" className="xl:col-span-8">
         <div className="flex mt-1">
           {taskItems.map((item, idx) => (
-            <>
+            <Fragment key={item.label}>
               {idx > 0 && (
-                <div key={`divider-${idx}`} className="w-px self-stretch bg-border shrink-0 mx-2" />
+                <div className="w-px self-stretch bg-border shrink-0 mx-2" />
               )}
-              <TaskCard key={item.label} {...item} onClick={() => navigate("/tasks")} />
-            </>
+              <TaskCard {...item} onClick={() => navigate("/tasks")} />
+            </Fragment>
           ))}
         </div>
       </Card>

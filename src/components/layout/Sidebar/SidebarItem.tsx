@@ -1,4 +1,4 @@
-import type { SidebarItemType } from "../../../types/SidebarItemType";
+import type { SidebarItemType } from "../../../types/sidebarItem";
 import { sidebarIcons } from "./sidebarIcons";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";

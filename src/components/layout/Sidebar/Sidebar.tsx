@@ -1,5 +1,6 @@
 import { useState } from "react";
-import type { SidebarItemType } from "../../../types/SidebarItemType";
+import { Link } from "react-router-dom";
+import type { SidebarItemType } from "../../../types/sidebarItem";
 import SidebarItem from "./SidebarItem";
 import CronoLogo from "../../../assets/branding/crono-logo-transparent.svg?react";
 import CronoLogoMark from "../../../assets/branding/crono-logo-mark.svg?react";
@@ -44,13 +45,13 @@ export default function Sidebar() {
             : "flex justify-between items-center pt-[22px] pr-[8px] pb-[22px] pl-[16px]"
         }
       >
-        <a href="/dashboard" className="flex shrink-0">
+        <Link to="/dashboard" className="flex shrink-0">
           {collapsed ? (
             <CronoLogoMark className="h-7 w-7 text-main" aria-hidden />
           ) : (
             <CronoLogo className="h-[28px] w-auto max-w-[120px]" aria-hidden />
           )}
-        </a>
+        </Link>
         <button
           type="button"
           onClick={() => setCollapsed((c) => !c)}

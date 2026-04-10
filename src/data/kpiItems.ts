@@ -36,7 +36,7 @@ export const kpiItems: KpiCardProps[] = [
   },
   {
     title: "Deals",
-    icon: sidebarIcons.tasks,
+    icon: sidebarIcons.deals,
     color: "#EC4899",
     current: 100,
     max: 200,
