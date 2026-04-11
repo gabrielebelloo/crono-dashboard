@@ -10,6 +10,8 @@ import cloudPng from "../../../assets/branding/cloud.png";
 
 const SIDEBAR_COLLAPSED_W = 64;
 const SIDEBAR_UNCOLLAPSED_W = 192;
+/** Figma Frame 1437255393 — nav + trial column */
+const SIDEBAR_NAV_SCROLL_MAX_H_PX = 496;
 
 type Props = {
   mobileOpen: boolean;
@@ -186,23 +188,24 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
           </button>
         </div>
 
-        <nav
-          className="flex min-h-0 flex-1 flex-col gap-[16px] overflow-y-auto overflow-x-hidden overscroll-y-contain [-webkit-overflow-scrolling:touch]"
-          aria-label="Main navigation"
+        <div
+          className="flex min-h-0 flex-1 basis-0 flex-col gap-4 overflow-y-auto overflow-x-hidden overscroll-y-contain [-webkit-overflow-scrolling:touch]"
+          style={{ maxHeight: `${SIDEBAR_NAV_SCROLL_MAX_H_PX}px` }}
         >
-          {sidebarItems.map((item) => (
-            <SidebarItem
-              key={item.href}
-              {...item}
-              collapsed={false}
-              isExpanded={expandedItem === item.id}
-              onToggle={() => toggleItem(item.id)}
-              onNavigate={handleNavigate}
-            />
-          ))}
-        </nav>
-
-        <div className="shrink-0">{trialCard(false)}</div>
+          <nav className="flex flex-col gap-4" aria-label="Main navigation">
+            {sidebarItems.map((item) => (
+              <SidebarItem
+                key={item.href}
+                {...item}
+                collapsed={false}
+                isExpanded={expandedItem === item.id}
+                onToggle={() => toggleItem(item.id)}
+                onNavigate={handleNavigate}
+              />
+            ))}
+          </nav>
+          <div className="shrink-0">{trialCard(false)}</div>
+        </div>
       </div>
 
       {accountSection(false)}
@@ -246,24 +249,28 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
             </button>
           </div>
 
-          <nav
-            className={`flex min-h-0 flex-1 flex-col gap-[16px] overflow-y-auto overflow-x-hidden overscroll-y-contain [-webkit-overflow-scrolling:touch] ${collapsed ? "w-full items-center px-0" : "w-full"}`}
-            aria-label="Main navigation"
+          <div
+            className={`flex min-h-0 flex-1 basis-0 flex-col gap-4 overflow-y-auto overflow-x-hidden overscroll-y-contain [-webkit-overflow-scrolling:touch] ${collapsed ? "w-full items-center px-0" : "w-full"}`}
+            style={{ maxHeight: `${SIDEBAR_NAV_SCROLL_MAX_H_PX}px` }}
           >
-            {sidebarItems.map((item) => (
-              <SidebarItem
-                key={item.href}
-                {...item}
-                collapsed={collapsed}
-                isExpanded={expandedItem === item.id}
-                onToggle={() => toggleItem(item.id)}
-                onNavigate={() => setExpandedItem(null)}
-              />
-            ))}
-          </nav>
-
-          <div className={`w-full shrink-0 ${collapsed ? "flex justify-center" : ""}`}>
-            {trialCard(collapsed)}
+            <nav
+              className={`flex flex-col gap-4 ${collapsed ? "w-full items-center px-0" : "w-full"}`}
+              aria-label="Main navigation"
+            >
+              {sidebarItems.map((item) => (
+                <SidebarItem
+                  key={item.href}
+                  {...item}
+                  collapsed={collapsed}
+                  isExpanded={expandedItem === item.id}
+                  onToggle={() => toggleItem(item.id)}
+                  onNavigate={() => setExpandedItem(null)}
+                />
+              ))}
+            </nav>
+            <div className={`w-full shrink-0 ${collapsed ? "flex justify-center" : ""}`}>
+              {trialCard(collapsed)}
+            </div>
           </div>
         </div>
 
