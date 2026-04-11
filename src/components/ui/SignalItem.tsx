@@ -55,7 +55,7 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
         <div className="relative shrink-0 self-center">
           <Avatar avatar={signal.avatar} />
           <span
-            className="pointer-events-none absolute left-0 top-[4px] h-[6px] w-[6px] shrink-0 rounded-full bg-[#F9BB06] ring-2 ring-white"
+            className="pointer-events-none absolute left-0 top-0 z-10 h-[6px] w-[6px] shrink-0 -translate-x-px -translate-y-px rounded-full bg-[#F9BB06] ring-2 ring-white"
             aria-hidden
           />
         </div>
