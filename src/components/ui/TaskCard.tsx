@@ -2,7 +2,6 @@ import { useLayoutEffect, useRef, useState } from "react";
 import TaskRowArrowIcon from "../../assets/icons/task-row-arrow.svg?react";
 import WarningIcon from "../../assets/icons/warning.svg?react";
 
-/** ~71px pill + a little room so the label does not sit on the count */
 const ERROR_BADGE_TEXT_MIN_INNER_PX = 104;
 
 export type TaskVariant = "overdue" | "pendingManual" | "pendingAuto" | "completed";

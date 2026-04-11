@@ -24,7 +24,7 @@ export default function DashboardPage() {
   return (
     <div className="ml-0 mr-auto w-full min-w-0 max-w-full xl:max-w-[1216px]">
       <div className="w-full min-w-0 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:thin] [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-border">
-        <div className="grid w-full min-w-0 auto-rows-min grid-cols-1 gap-2 md:grid-cols-2 md:gap-2 xl:min-w-[1216px] xl:grid-cols-[396px_396px_408px] xl:gap-x-2 xl:gap-y-2 xl:items-start artboard:!gap-y-1">
+        <div className="grid w-full min-w-0 auto-rows-min grid-cols-1 gap-2 md:grid-cols-2 md:gap-2 xl:min-w-[1216px] xl:grid-cols-[396px_396px_408px] xl:gap-2 xl:items-start">
         <Card className="md:col-span-1 xl:col-start-1 xl:row-start-1 box-border flex w-full max-w-full flex-col gap-2 !p-0 !py-8 !pl-6 !pr-6 md:min-h-[142px] xl:h-[142px] xl:w-[396px] xl:max-w-[396px] xl:shrink-0">
           <h1 className="min-w-0 w-full text-h1 text-dark">Welcome Alex,</h1>
           <p className="min-w-0 w-full text-b1 text-gray">
@@ -68,7 +68,7 @@ export default function DashboardPage() {
           headerTitle="May's Performance"
           headerActionName="Edit KPIs"
           headerActionIcon={EditIcon}
-          className="md:col-span-2 xl:col-start-3 xl:row-span-2 xl:row-start-1 xl:mt-[5px] artboard:!mt-0 box-border flex w-full min-w-0 max-w-full flex-col overflow-hidden md:min-h-[280px] xl:h-[293px] xl:w-[408px] xl:max-w-[408px] xl:min-h-[293px] xl:self-start xl:justify-self-stretch"
+          className="md:col-span-2 xl:col-start-3 xl:row-span-2 xl:row-start-1 box-border flex w-full min-w-0 max-w-full flex-col overflow-hidden md:min-h-[280px] xl:h-[293px] xl:w-[408px] xl:max-w-[408px] xl:min-h-[293px] xl:self-end xl:justify-self-stretch"
         >
           <div className="grid min-h-0 min-w-0 w-full max-w-full flex-1 grid-cols-2 content-start gap-2 auto-rows-min">
             {kpiItems.map((item) => (
@@ -81,16 +81,24 @@ export default function DashboardPage() {
           headerTitle="Today's tasks"
           className="md:col-span-2 xl:col-span-2 xl:col-start-1 xl:row-start-2 box-border flex h-auto min-h-0 w-full min-w-0 max-w-full flex-col items-start overflow-hidden xl:h-[148px] xl:min-h-[148px] artboard:w-[800px] artboard:max-w-[800px] artboard:shrink-0"
         >
-          <div className="box-border grid min-h-[86px] h-[86px] w-full min-w-0 shrink-0 grid-cols-[minmax(0,1fr)_1px_minmax(0,1fr)_1px_minmax(0,1fr)_1px_minmax(0,1fr)] gap-0 gap-x-[6.5px] overflow-x-hidden overflow-y-hidden [-webkit-overflow-scrolling:touch] artboard:w-[768px] artboard:max-w-[768px] artboard:grid-cols-[181.5px_1px_181.5px_1px_181.5px_1px_181.5px]">
+          <div className="box-border flex h-[86px] min-h-[86px] w-full min-w-0 shrink-0 items-stretch overflow-x-hidden overflow-y-hidden [-webkit-overflow-scrolling:touch] artboard:w-[768px] artboard:max-w-[768px]">
             {taskItems.map((item, idx) => (
               <Fragment key={item.label}>
-                <TaskCard {...item} onClick={() => navigate("/tasks")} />
-                {idx < taskItems.length - 1 && (
-                  <div
-                    className={`h-[86px] w-px shrink-0 ${idx === 1 ? "bg-transparent" : "bg-border"}`}
-                    aria-hidden
-                  />
-                )}
+                <TaskCard
+                  {...item}
+                  onClick={() => navigate("/tasks")}
+                  className="min-h-0 min-w-0 w-auto max-w-none shrink flex-1 basis-0 self-stretch"
+                />
+                {idx < taskItems.length - 1 &&
+                  (idx === 1 ? (
+                    <div className="h-[86px] w-[8px] shrink-0" aria-hidden />
+                  ) : (
+                    <>
+                      <div className="h-[86px] w-[6.5px] shrink-0" aria-hidden />
+                      <div className="h-[86px] w-px shrink-0 bg-border" aria-hidden />
+                      <div className="h-[86px] w-[6.5px] shrink-0" aria-hidden />
+                    </>
+                  ))}
               </Fragment>
             ))}
           </div>

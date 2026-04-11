@@ -10,7 +10,6 @@ import cloudPng from "../../../assets/branding/cloud.png";
 
 const SIDEBAR_COLLAPSED_W = 64;
 const SIDEBAR_UNCOLLAPSED_W = 192;
-/** Figma Frame 1437255393 — nav + trial column */
 const SIDEBAR_NAV_SCROLL_MAX_H_PX = 496;
 
 type Props = {

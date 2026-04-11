@@ -4,7 +4,6 @@ export default {
   theme: {
     extend: {
       screens: {
-        /** Figma desktop artboard: fixed task strip only at this size */
         artboard: { raw: "(min-width: 1440px) and (min-height: 750px)" },
       },
       fontFamily: {
