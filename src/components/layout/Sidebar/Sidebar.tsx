@@ -12,6 +12,8 @@ const SIDEBAR_COLLAPSED_W = 64;
 const SIDEBAR_UNCOLLAPSED_W = 192;
 const SIDEBAR_NAV_SCROLL_MAX_H_PX = 496;
 
+const SIDEBAR_WIDTH_CSS_VAR = "--app-sidebar-width";
+
 type Props = {
   mobileOpen: boolean;
   onClose: () => void;
@@ -52,6 +54,14 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
   ];
 
   const widthPx = collapsed ? SIDEBAR_COLLAPSED_W : SIDEBAR_UNCOLLAPSED_W;
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty(SIDEBAR_WIDTH_CSS_VAR, `${widthPx}px`);
+    return () => {
+      root.style.removeProperty(SIDEBAR_WIDTH_CSS_VAR);
+    };
+  }, [widthPx]);
 
   const trialCard = (isCollapsed: boolean) => (
     <div className={`${isCollapsed ? "px-2" : ""}`}>
@@ -214,7 +224,7 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
   return (
     <>
       <aside
-        className="box-border hidden h-dvh min-h-0 max-h-dvh shrink-0 flex-col bg-white shadow-[inset_-1px_0_0_0_var(--border-color)] transition-[width] ease-out lg:sticky lg:top-0 lg:flex"
+        className="box-border hidden h-dvh min-h-0 max-h-dvh shrink-0 flex-col bg-white shadow-[inset_-1px_0_0_0_var(--border-color)] transition-[width] ease-out lg:fixed lg:left-0 lg:top-0 lg:z-20 lg:flex"
         style={{ width: widthPx }}
       >
         <div
