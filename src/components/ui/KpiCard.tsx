@@ -31,8 +31,8 @@ export default function KpiCard({
   const progressPct = Math.min(max > 0 ? (current / max) * 100 : 0, 100);
 
   return (
-    <div className="box-border flex h-[72px] w-full min-w-0 max-w-full shrink-0 flex-col rounded-[8px] border border-border p-2">
-      <div className="flex w-full shrink-0 items-center justify-start gap-1">
+    <div className="box-border flex h-[72px] w-full min-w-0 max-w-full shrink-0 flex-col overflow-hidden rounded-[8px] border border-border p-2">
+      <div className="flex w-full min-w-0 shrink-0 items-center justify-start gap-1">
         <span className="text-kpi-title min-w-0 flex-1 truncate text-left">{title}</span>
 
         {tooltip && (
@@ -68,13 +68,13 @@ export default function KpiCard({
         )}
       </div>
 
-      <div className="mt-1 flex w-full min-w-0 shrink-0 flex-row items-center justify-start gap-1">
+      <div className="mt-1 flex w-full min-w-0 shrink-0 flex-row items-center justify-start gap-1 overflow-hidden">
         {Icon ? (
           <span className="flex h-4 w-4 shrink-0 items-center justify-center">
             <Icon className="block h-4 w-4 shrink-0" style={{ color }} aria-hidden="true" />
           </span>
         ) : null}
-        <span className="mt-[3px] inline-flex min-w-0 shrink items-baseline gap-0">
+        <span className="mt-[3px] inline-flex min-w-0 flex-1 basis-0 shrink items-baseline gap-0 overflow-hidden">
           <span
             className="min-w-0 truncate text-left text-kpi-metric leading-6 tabular-nums"
             style={{ color }}

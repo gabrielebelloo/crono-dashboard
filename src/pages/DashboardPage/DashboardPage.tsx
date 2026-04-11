@@ -23,9 +23,9 @@ export default function DashboardPage() {
 
   return (
     <div className="ml-0 mr-auto w-full min-w-0 max-w-full xl:max-w-[1216px]">
-      <div className="w-full min-w-0 overflow-x-auto overscroll-x-contain artboard:overflow-x-hidden [-ms-overflow-style:none] [scrollbar-width:thin] [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-border">
-        <div className="grid w-full min-w-0 auto-rows-min grid-cols-1 gap-2 md:grid-cols-2 md:gap-2 xl:min-w-[1216px] xl:grid-cols-[396px_396px_408px] xl:gap-2 xl:items-start">
-        <Card className="md:col-span-1 xl:col-start-1 xl:row-start-1 box-border flex w-full max-w-full flex-col gap-2 !p-0 !py-8 !pl-6 !pr-6 md:min-h-[142px] xl:h-[142px] xl:w-[396px] xl:max-w-[396px] xl:shrink-0">
+      <div className="w-full min-w-0 overflow-x-hidden">
+        <div className="grid w-full min-w-0 auto-rows-min grid-cols-1 gap-2 md:grid-cols-[repeat(2,minmax(0,1fr))] xl:grid-cols-[33fr_33fr_34fr] artboard:grid-cols-[396px_396px_408px] xl:items-start">
+        <Card className="md:col-span-1 xl:col-start-1 xl:row-start-1 box-border flex w-full min-w-0 flex-col gap-2 !p-0 !py-8 !pl-6 !pr-6 md:min-h-[142px] xl:h-[142px]">
           <h1 className="min-w-0 w-full text-h1 text-dark">Welcome Alex,</h1>
           <p className="min-w-0 w-full text-b1 text-gray">
             {"Here's your performance overview where you can track your daily and monthly KPIs"}
@@ -37,7 +37,7 @@ export default function DashboardPage() {
           headerActionName="Open inbox"
           headerActionIcon={ArrowIcon}
           headerActionFunc={() => navigate("/inbox")}
-          className="md:col-span-1 xl:col-start-2 xl:row-start-1 box-border flex h-auto min-h-0 w-full max-w-full flex-col items-stretch overflow-hidden md:min-h-[142px] xl:h-[142px] xl:w-[396px] xl:max-w-[396px] artboard:!px-[15px] xl:shrink-0"
+          className="md:col-span-1 xl:col-start-2 xl:row-start-1 box-border flex h-auto min-h-0 w-full min-w-0 flex-col items-stretch overflow-hidden md:min-h-[142px] xl:h-[142px] artboard:!px-[15px]"
         >
           <div className="flex min-h-[80px] w-full min-w-0 max-w-full shrink-0 flex-row items-center gap-2 overflow-x-auto overflow-y-hidden rounded-[12px] bg-light py-4 pl-4 pr-4 sm:gap-3 sm:py-4 sm:pl-4 sm:pr-6 md:h-[80px] md:gap-4">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[24px] bg-hover p-3">
@@ -68,9 +68,9 @@ export default function DashboardPage() {
           headerTitle="May's Performance"
           headerActionName="Edit KPIs"
           headerActionIcon={EditIcon}
-          className="md:col-span-2 xl:col-start-3 xl:row-span-2 xl:row-start-1 box-border flex w-full min-w-0 max-w-full flex-col overflow-hidden md:min-h-[280px] xl:h-[293px] xl:w-[408px] xl:max-w-[408px] xl:min-h-[293px] xl:self-end xl:justify-self-stretch"
+          className="md:col-span-2 xl:col-span-1 xl:col-start-3 xl:row-span-2 xl:row-start-1 box-border flex w-full min-w-0 flex-col overflow-hidden md:min-h-[280px] xl:h-[293px] xl:min-h-[293px] xl:self-end"
         >
-          <div className="grid min-h-0 min-w-0 w-full max-w-full flex-1 grid-cols-2 content-start gap-2 auto-rows-min">
+          <div className="grid min-h-0 min-w-0 w-full max-w-full flex-1 auto-rows-min grid-cols-1 content-start gap-2 sm:grid-cols-[repeat(2,minmax(0,1fr))]">
             {kpiItems.map((item) => (
               <KpiCard key={item.title} {...item} />
             ))}
@@ -79,7 +79,7 @@ export default function DashboardPage() {
 
         <Card
           headerTitle="Today's tasks"
-          className="md:col-span-2 xl:col-span-2 xl:col-start-1 xl:row-start-2 box-border flex h-auto min-h-0 w-full min-w-0 max-w-full flex-col items-start overflow-hidden xl:h-[148px] xl:min-h-[148px] artboard:w-[800px] artboard:max-w-[800px] artboard:shrink-0"
+          className="md:col-span-2 xl:col-span-2 xl:col-start-1 xl:row-start-2 box-border flex h-auto min-h-0 w-full min-w-0 flex-col items-start overflow-hidden xl:h-[148px] xl:min-h-[148px] artboard:w-[800px] artboard:max-w-[800px] artboard:shrink-0"
         >
           <div className="box-border flex h-[86px] min-h-[86px] w-full min-w-0 shrink-0 items-stretch overflow-x-hidden overflow-y-hidden [-webkit-overflow-scrolling:touch] artboard:w-[768px] artboard:max-w-[768px]">
             {taskItems.map((item, idx) => (
@@ -104,7 +104,7 @@ export default function DashboardPage() {
           </div>
         </Card>
 
-        <div className="contents xl:col-span-3 xl:row-start-3 xl:flex xl:min-h-0 xl:min-w-0 xl:w-full xl:max-w-full xl:flex-row xl:flex-wrap xl:items-start xl:justify-start xl:gap-2">
+        <div className="contents xl:col-span-3 xl:row-start-3 xl:grid xl:min-w-0 xl:w-full xl:grid-cols-subgrid">
           <Card
             headerTitle="Signals"
             headerCounter={signals.length}
@@ -114,7 +114,7 @@ export default function DashboardPage() {
                 LinkedIn connections.
               </p>
             }
-            className="md:col-span-2 box-border flex w-full min-w-0 flex-col gap-[12px] overflow-hidden max-xl:max-h-[min(60vh,520px)] max-xl:flex-1 xl:h-[412px] xl:min-h-[412px] xl:max-h-[412px] xl:max-w-[800px] xl:min-w-0 xl:flex-1 xl:self-start xl:!p-0 xl:!pb-0 xl:!pt-4"
+            className="md:col-span-2 box-border flex w-full min-w-0 flex-col gap-[12px] overflow-hidden max-xl:max-h-[min(60vh,520px)] max-xl:flex-1 xl:col-span-2 xl:col-start-1 xl:h-[412px] xl:min-h-[412px] xl:max-h-[412px] xl:self-start xl:!p-0 xl:!pb-0 xl:!pt-4"
           >
             <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-4 overflow-y-auto pb-4 pr-1">
               {signals.map((signal, idx) => (
@@ -135,7 +135,7 @@ export default function DashboardPage() {
 
           <Card
             headerTitle="Onboarding"
-            className="md:col-span-2 box-border flex w-full min-w-0 flex-col overflow-hidden max-xl:max-h-[min(60vh,520px)] max-xl:flex-1 xl:h-[412px] xl:min-h-[412px] xl:max-h-[412px] xl:w-[408px] xl:max-w-[408px] xl:shrink-0 xl:self-start"
+            className="md:col-span-2 box-border flex w-full min-w-0 flex-col overflow-hidden max-xl:max-h-[min(60vh,520px)] max-xl:flex-1 xl:col-span-1 xl:col-start-3 xl:h-[412px] xl:min-h-[412px] xl:max-h-[412px] xl:self-start"
           >
             <div className="flex min-h-0 min-w-0 w-full flex-1 flex-col items-stretch gap-4 overflow-y-auto pr-1">
               {onboardingItems.map((item, idx) => (
