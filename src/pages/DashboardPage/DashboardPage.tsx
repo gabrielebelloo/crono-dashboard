@@ -22,9 +22,9 @@ export default function DashboardPage() {
   const { signals, complete, remove } = useSignals();
 
   return (
-    <div className="ml-0 mr-auto w-full min-w-0 max-w-full xl:max-w-[1216px] artboard:max-w-[1218px]">
-      <div className="w-full min-w-0 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:thin] [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-border">
-        <div className="grid w-full min-w-0 auto-rows-min grid-cols-1 gap-2 md:grid-cols-2 md:gap-2 xl:min-w-[1216px] xl:grid-cols-[396px_396px_408px] artboard:min-w-[1218px] artboard:grid-cols-[396px_398px_408px] xl:gap-2 xl:items-start">
+    <div className="ml-0 mr-auto w-full min-w-0 max-w-full xl:max-w-[1216px]">
+      <div className="w-full min-w-0 overflow-x-auto overscroll-x-contain artboard:overflow-x-hidden [-ms-overflow-style:none] [scrollbar-width:thin] [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-border">
+        <div className="grid w-full min-w-0 auto-rows-min grid-cols-1 gap-2 md:grid-cols-2 md:gap-2 xl:min-w-[1216px] xl:grid-cols-[396px_396px_408px] xl:gap-2 xl:items-start">
         <Card className="md:col-span-1 xl:col-start-1 xl:row-start-1 box-border flex w-full max-w-full flex-col gap-2 !p-0 !py-8 !pl-6 !pr-6 md:min-h-[142px] xl:h-[142px] xl:w-[396px] xl:max-w-[396px] xl:shrink-0">
           <h1 className="min-w-0 w-full text-h1 text-dark">Welcome Alex,</h1>
           <p className="min-w-0 w-full text-b1 text-gray">
@@ -37,7 +37,7 @@ export default function DashboardPage() {
           headerActionName="Open inbox"
           headerActionIcon={ArrowIcon}
           headerActionFunc={() => navigate("/inbox")}
-          className="md:col-span-1 xl:col-start-2 xl:row-start-1 box-border flex h-auto min-h-0 w-full max-w-full flex-col items-stretch overflow-hidden md:min-h-[142px] xl:h-[142px] xl:w-[396px] xl:max-w-[396px] artboard:w-[398px] artboard:max-w-[398px] xl:shrink-0"
+          className="md:col-span-1 xl:col-start-2 xl:row-start-1 box-border flex h-auto min-h-0 w-full max-w-full flex-col items-stretch overflow-hidden md:min-h-[142px] xl:h-[142px] xl:w-[396px] xl:max-w-[396px] artboard:!px-[15px] xl:shrink-0"
         >
           <div className="flex min-h-[80px] w-full min-w-0 max-w-full shrink-0 flex-row items-center gap-2 overflow-x-auto overflow-y-hidden rounded-[12px] bg-light py-4 pl-4 pr-4 sm:gap-3 sm:py-4 sm:pl-4 sm:pr-6 md:h-[80px] md:gap-4">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[24px] bg-hover p-3">
