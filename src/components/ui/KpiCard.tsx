@@ -90,9 +90,9 @@ export default function KpiCard({
 
       <div className="min-h-0 flex-1" aria-hidden />
 
-      <div className="h-[3px] w-full shrink-0 overflow-hidden rounded-full bg-border">
+      <div className="h-[3px] w-full shrink-0 overflow-hidden rounded-[3px] bg-border">
         <div
-          className="h-full rounded-full transition-[width] duration-500 ease-out"
+          className="h-full rounded-[3px] transition-[width] duration-500 ease-out"
           style={{ width: `${progressPct}%`, backgroundColor: color }}
         />
       </div>

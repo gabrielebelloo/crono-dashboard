@@ -50,8 +50,8 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
   }, [open]);
 
   return (
-    <div className="flex w-full min-w-0 flex-col gap-3 px-4 sm:min-h-10 sm:flex-row sm:items-center sm:justify-between sm:gap-4 lg:gap-8">
-      <div className="flex min-w-0 max-w-[min(100%,540px)] shrink items-center gap-4">
+    <div className="flex w-full min-w-0 flex-col gap-[10px] px-4 sm:min-h-10 sm:flex-row sm:items-center sm:gap-12">
+      <div className="flex min-w-0 flex-1 shrink items-center gap-4">
         <div className="relative shrink-0 self-center">
           <Avatar avatar={signal.avatar} />
           <span
@@ -84,7 +84,7 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
         </div>
       </div>
 
-      <div className="flex w-full shrink-0 flex-row flex-wrap items-center justify-end gap-3 sm:w-auto sm:gap-4">
+      <div className="flex w-full shrink-0 flex-row flex-wrap items-center justify-end gap-4 sm:w-auto sm:gap-4">
         <span className="text-b5 whitespace-nowrap text-gray">{signal.date}</span>
 
         <div className="relative shrink-0" ref={popoverRef}>
@@ -93,7 +93,7 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
             aria-expanded={open}
             aria-haspopup="menu"
             onClick={() => setOpen((p) => !p)}
-            className="box-border flex h-8 w-[90px] shrink-0 cursor-pointer items-center justify-center rounded-[34px] bg-main px-4 py-[7px] text-s3 text-white transition-opacity duration-150 hover:opacity-90 active:opacity-80"
+            className="box-border flex h-8 w-[90px] shrink-0 cursor-pointer items-center justify-center rounded-[34px] bg-main px-4 py-[7px] text-s3 text-white transition-colors duration-150 hover:bg-secondary active:bg-secondary"
           >
             Action
           </button>

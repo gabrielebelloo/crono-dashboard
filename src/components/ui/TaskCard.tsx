@@ -1,5 +1,9 @@
+import { useLayoutEffect, useRef, useState } from "react";
 import TaskRowArrowIcon from "../../assets/icons/task-row-arrow.svg?react";
 import WarningIcon from "../../assets/icons/warning.svg?react";
+
+/** ~71px pill + a little room so the label does not sit on the count */
+const ERROR_BADGE_TEXT_MIN_INNER_PX = 104;
 
 export type TaskVariant = "overdue" | "pendingManual" | "pendingAuto" | "completed";
 
@@ -30,21 +34,46 @@ export default function TaskCard({
   const { bg, count: countTone } = VARIANT_MAP[variant];
   const isPendingAuto = variant === "pendingAuto";
   const showArrow = variant !== "completed";
+  const cardRef = useRef<HTMLButtonElement>(null);
+  const [showErrorLabel, setShowErrorLabel] = useState(false);
+
+  const hasErrorBadge = errorCount != null && errorCount > 0;
+
+  useLayoutEffect(() => {
+    if (!hasErrorBadge) return;
+    const el = cardRef.current;
+    if (!el) return;
+    const measure = () => {
+      setShowErrorLabel(el.clientWidth >= ERROR_BADGE_TEXT_MIN_INNER_PX);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [hasErrorBadge]);
 
   return (
     <button
+      ref={cardRef}
       type="button"
       onClick={onClick}
       className={`relative box-border flex h-[86px] min-w-0 w-full max-w-full shrink-0 flex-col items-stretch overflow-hidden rounded-[12.2105px] border-0 p-4 text-left outline-none transition-opacity duration-150 hover:opacity-90 focus-visible:ring-2 focus-visible:ring-gray/30 focus-visible:ring-offset-2 ${isPendingAuto ? "isolate" : ""} ${bg} ${className}`}
     >
-      {errorCount != null && errorCount > 0 && (
+      {hasErrorBadge && (
         <div
-          className="absolute right-[9.5px] top-2 z-20 box-border flex h-6 w-[71px] shrink-0 flex-row items-center gap-0.5 overflow-hidden rounded-2xl bg-white py-0 pl-2"
+          className={`absolute top-2 z-20 box-border flex h-6 shrink-0 flex-row items-center overflow-hidden rounded-2xl bg-white ${
+            showErrorLabel
+              ? "right-[9.5px] w-[71px] justify-between gap-0.5 py-0 pl-2"
+              : "right-2 w-6 justify-center ring-1 ring-border/60"
+          }`}
           role="status"
+          aria-label={`${errorCount} ${errorCount === 1 ? "error" : "errors"}`}
         >
-          <span className="min-w-0 flex-1 truncate text-b3 text-taskOverdueText">
-            {errorCount} {errorCount === 1 ? "error" : "errors"}
-          </span>
+          {showErrorLabel && (
+            <span className="min-w-0 flex-1 truncate text-b3 text-taskOverdueText">
+              {errorCount} {errorCount === 1 ? "error" : "errors"}
+            </span>
+          )}
           <span
             className="flex h-6 w-6 shrink-0 items-center justify-center text-taskOverdueText"
             aria-hidden="true"

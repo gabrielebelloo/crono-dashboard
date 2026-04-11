@@ -38,7 +38,7 @@ export default function Card({
                 <div className="flex items-center gap-[6px]">
                   <div className="text-s2 text-dark">{headerTitle}</div>
                   {!!headerCounter && (
-                    <div className="flex h-6 min-w-[28px] shrink-0 items-center justify-center rounded-[12px] bg-yellow px-2 py-[3px] text-xs font-semibold leading-4 text-white tabular-nums">
+                    <div className="flex h-6 min-w-[28px] shrink-0 items-center justify-center rounded-[12px] bg-yellow px-2 py-[3px] text-b3 font-semibold leading-4 text-white tabular-nums">
                       {headerCounter}
                     </div>
                   )}
@@ -70,7 +70,7 @@ export default function Card({
               <div className="flex items-center gap-[6px]">
                 <div className="text-s2 text-dark">{headerTitle}</div>
                 {!!headerCounter && (
-                  <div className="flex h-6 min-w-[28px] shrink-0 items-center justify-center rounded-[12px] bg-yellow px-2 py-[3px] text-xs font-semibold leading-4 text-white tabular-nums">
+                  <div className="flex h-6 min-w-[28px] shrink-0 items-center justify-center rounded-[12px] bg-yellow px-2 py-[3px] text-b3 font-semibold leading-4 text-white tabular-nums">
                     {headerCounter}
                   </div>
                 )}
