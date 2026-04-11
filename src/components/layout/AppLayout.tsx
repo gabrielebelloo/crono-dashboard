@@ -37,7 +37,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
       <Sidebar mobileOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <main className="min-w-0 flex-1 max-w-full overflow-x-hidden bg-bg p-4 pt-18 sm:p-5 lg:px-4 lg:pb-6 lg:pt-4">
+      <main className="min-w-0 flex-1 max-w-full overflow-x-hidden bg-bg p-4 pt-18 sm:p-5 lg:px-4 lg:pb-6 lg:pt-4 artboard:px-4 artboard:py-3">
         {children}
       </main>
     </div>

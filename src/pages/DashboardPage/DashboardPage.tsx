@@ -24,7 +24,7 @@ export default function DashboardPage() {
   return (
     <div className="ml-0 mr-auto w-full min-w-0 max-w-full xl:max-w-[1216px]">
       <div className="w-full min-w-0 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:thin] [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-border">
-        <div className="grid w-full min-w-0 auto-rows-min grid-cols-1 gap-2 md:grid-cols-2 md:gap-2 xl:min-w-[1216px] xl:grid-cols-[396px_396px_408px] xl:gap-x-2 xl:gap-y-2 xl:items-start">
+        <div className="grid w-full min-w-0 auto-rows-min grid-cols-1 gap-2 md:grid-cols-2 md:gap-2 xl:min-w-[1216px] xl:grid-cols-[396px_396px_408px] xl:gap-x-2 xl:gap-y-2 xl:items-start artboard:!gap-y-1">
         <Card className="md:col-span-1 xl:col-start-1 xl:row-start-1 box-border flex w-full max-w-full flex-col gap-2 !p-0 !py-8 !pl-6 !pr-6 md:min-h-[142px] xl:h-[142px] xl:w-[396px] xl:max-w-[396px] xl:shrink-0">
           <h1 className="min-w-0 w-full text-h1 text-dark">Welcome Alex,</h1>
           <p className="min-w-0 w-full text-b1 text-gray">
@@ -68,7 +68,7 @@ export default function DashboardPage() {
           headerTitle="May's Performance"
           headerActionName="Edit KPIs"
           headerActionIcon={EditIcon}
-          className="md:col-span-2 xl:col-start-3 xl:row-span-2 xl:row-start-1 xl:mt-[5px] box-border flex w-full min-w-0 max-w-full flex-col overflow-hidden md:min-h-[280px] xl:h-[293px] xl:w-[408px] xl:max-w-[408px] xl:min-h-[293px] xl:self-start xl:justify-self-stretch"
+          className="md:col-span-2 xl:col-start-3 xl:row-span-2 xl:row-start-1 xl:mt-[5px] artboard:!mt-0 box-border flex w-full min-w-0 max-w-full flex-col overflow-hidden md:min-h-[280px] xl:h-[293px] xl:w-[408px] xl:max-w-[408px] xl:min-h-[293px] xl:self-start xl:justify-self-stretch"
         >
           <div className="grid min-h-0 min-w-0 w-full max-w-full flex-1 grid-cols-2 content-start gap-2 auto-rows-min">
             {kpiItems.map((item) => (
