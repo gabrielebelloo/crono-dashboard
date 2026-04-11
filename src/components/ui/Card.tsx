@@ -6,7 +6,6 @@ type CardProps = {
   headerActionFunc?: () => void;
   headerActionIcon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   headerCounter?: number;
-  /** Renders under the title row (e.g. Signals subtitle). Enables stacked header + horizontal padding. */
   subheader?: React.ReactNode;
 };
 
@@ -23,7 +22,7 @@ export default function Card({
   const hasBg = className.includes("bg-");
   return (
     <div
-      className={`box-border flex flex-col rounded-[15.5px] border border-border p-[16px] ${hasBg ? "" : "bg-white"} ${className}`}
+      className={`box-border flex flex-col rounded-[16px] border border-border p-[16px] ${hasBg ? "" : "bg-white"} ${className}`}
     >
       {!!headerTitle && (
         <header
@@ -39,7 +38,7 @@ export default function Card({
                 <div className="flex items-center gap-[6px]">
                   <div className="text-s2 text-dark">{headerTitle}</div>
                   {!!headerCounter && (
-                    <div className="flex h-6 min-w-7 shrink-0 items-center justify-center rounded-[12px] bg-yellow px-2 py-[3px] text-b3 font-semibold text-white tabular-nums">
+                    <div className="flex h-6 min-w-[28px] shrink-0 items-center justify-center rounded-[12px] bg-yellow px-2 py-[3px] text-xs font-semibold leading-4 text-white tabular-nums">
                       {headerCounter}
                     </div>
                   )}
@@ -71,7 +70,7 @@ export default function Card({
               <div className="flex items-center gap-[6px]">
                 <div className="text-s2 text-dark">{headerTitle}</div>
                 {!!headerCounter && (
-                  <div className="flex h-6 min-w-7 shrink-0 items-center justify-center rounded-[12px] bg-yellow px-2 py-[3px] text-b3 font-semibold text-white tabular-nums">
+                  <div className="flex h-6 min-w-[28px] shrink-0 items-center justify-center rounded-[12px] bg-yellow px-2 py-[3px] text-xs font-semibold leading-4 text-white tabular-nums">
                     {headerCounter}
                   </div>
                 )}

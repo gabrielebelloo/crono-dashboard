@@ -7,25 +7,37 @@
   --light-color: #e9f8f8;
   --hover-color: #ceeded;
   --gray-color: #7a8395;
+  --gray-2-color: #afb5bf;
   --dark-color: #010e27;
   --bg-color: #f5f7f9;
   --border-color: #e6e9f2;
   --yellow-color: #f9bb06;
   --gray-hover-1-color: #3e485b;
-  /* KPI tile row labels (Contacts engaged, etc.) — same as Figma fill #3E485B */
-  --kpi-tile-label-color: var(--gray-hover-1-color);
+  --kpi-card-title-color: #3e485b;
+  --kpi-card-info-icon-color: #7a8395;
+  --kpi-tile-label-color: var(--kpi-card-title-color);
   --avatar-ring-color: #d5e0f0;
   --stack-blue-color: #3b85e8;
-  /* KPI info tooltip / pop-up (Figma Main/Dark) */
   --popup-dark-color: #151618;
-  /* Today’s tasks — tile fills + metric colors (Figma) */
+  --kpi-contacts-color: #3b85e8;
+  --kpi-companies-color: #3b58db;
+  --kpi-activities-color: #8846dc;
+  --kpi-meetings-color: #e2ad13;
+  --kpi-deals-color: #e769cb;
+  --kpi-pipeline-color: #1a9d6e;
   --task-overdue-bg: #ffe9e9;
   --task-overdue-text: #ed4c5e;
   --task-pending-manual-bg: #fef3d2;
   --task-pending-manual-text: #c69812;
   --task-pending-auto-bg: #eaf1fb;
+  --task-pending-auto-text: #3b85e8;
   --task-completed-bg: #e8f5d9;
   --task-completed-text: #1a9d6e;
+  --signal-tag-role: #8846dc;
+  --signal-tag-company: #3b85e8;
+  --signal-tag-website: #e769cb;
+  --signal-in-sequence-bg: #e9f8f8;
+  --signal-in-sequence-text: #0a9b94;
 }
 
 @utility text-h1 {
@@ -55,7 +67,6 @@
   letter-spacing: 0;
 }
 
-/* Subheading / S3-Medium — card header actions (Open inbox, Edit KPIs, …) */
 @utility text-s3 {
   font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
   font-style: normal;
@@ -83,7 +94,25 @@
   letter-spacing: 0;
 }
 
-/* Body / B5-Medium — signal row dates */
+@utility text-signal-tag {
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
+}
+
+@utility text-signal-in-sequence {
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0;
+  color: var(--signal-in-sequence-text);
+}
+
 @utility text-b5 {
   font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
   font-style: normal;
@@ -93,7 +122,6 @@
   letter-spacing: 0;
 }
 
-/* KPI tile label + metric (May's Performance grid) */
 @utility text-kpi-title {
   font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
   font-style: normal;
@@ -101,7 +129,7 @@
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0;
-  color: var(--kpi-tile-label-color);
+  color: var(--kpi-card-title-color);
 }
 
 @utility text-kpi-metric {
@@ -109,11 +137,20 @@
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  line-height: 22px;
+  line-height: 24px;
   letter-spacing: 0;
 }
 
-/* Today’s tasks row */
+@utility text-kpi-metric-max {
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: var(--gray-2-color);
+}
+
 @utility text-task-count {
   font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
   font-style: normal;

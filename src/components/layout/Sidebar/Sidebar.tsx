@@ -85,7 +85,7 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
           </>
         ) : (
           <>
-            <div className="absolute left-[8px] top-[8px] z-10 text-s3 text-dark">
+            <div className="absolute w-[135px] left-[8px] top-[8px] z-10 text-s3 text-dark">
               Trial ends in 2 days
             </div>
             <button
@@ -151,7 +151,7 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
 
   const sidebarContent = (
     <aside
-      className="flex shrink-0 flex-col justify-between bg-white h-dvh border-r border-border"
+      className="box-border flex h-dvh shrink-0 flex-col justify-between bg-white shadow-[inset_-1px_0_0_0_var(--border-color)]"
       style={{ width: SIDEBAR_UNCOLLAPSED_W }}
     >
       <div className="flex flex-col gap-[8px]">
@@ -211,7 +211,7 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
   return (
     <>
       <aside
-        className="hidden lg:flex shrink-0 flex-col justify-between bg-white h-screen sticky top-0 border-r border-border transition-[width] ease-out"
+        className="box-border hidden h-screen shrink-0 flex-col justify-between bg-white shadow-[inset_-1px_0_0_0_var(--border-color)] transition-[width] ease-out lg:sticky lg:top-0 lg:flex"
         style={{ width: widthPx }}
       >
         <div className={`flex flex-col gap-[8px] ${collapsed ? "items-center" : ""}`}>
