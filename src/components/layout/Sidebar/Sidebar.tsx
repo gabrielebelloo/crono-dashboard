@@ -151,11 +151,11 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
 
   const sidebarContent = (
     <aside
-      className="box-border flex h-dvh shrink-0 flex-col justify-between bg-white shadow-[inset_-1px_0_0_0_var(--border-color)]"
+      className="box-border flex h-dvh min-h-0 max-h-dvh shrink-0 flex-col bg-white shadow-[inset_-1px_0_0_0_var(--border-color)]"
       style={{ width: SIDEBAR_UNCOLLAPSED_W }}
     >
-      <div className="flex flex-col gap-[8px]">
-        <div className="flex justify-between items-center pt-[22px] pr-[8px] pb-[22px] pl-[16px]">
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-[8px] overflow-hidden">
+        <div className="flex shrink-0 justify-between items-center pt-[22px] pr-[8px] pb-[22px] pl-[16px]">
           <Link
             to="/dashboard"
             className="flex shrink-0"
@@ -186,22 +186,23 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
           </button>
         </div>
 
-        <div className="flex flex-col gap-[16px]">
-          <nav className="flex flex-col gap-[16px]">
-            {sidebarItems.map((item) => (
-              <SidebarItem
-                key={item.href}
-                {...item}
-                collapsed={false}
-                isExpanded={expandedItem === item.id}
-                onToggle={() => toggleItem(item.id)}
-                onNavigate={handleNavigate}
-              />
-            ))}
-          </nav>
+        <nav
+          className="flex min-h-0 flex-1 flex-col gap-[16px] overflow-y-auto overflow-x-hidden overscroll-y-contain [-webkit-overflow-scrolling:touch]"
+          aria-label="Main navigation"
+        >
+          {sidebarItems.map((item) => (
+            <SidebarItem
+              key={item.href}
+              {...item}
+              collapsed={false}
+              isExpanded={expandedItem === item.id}
+              onToggle={() => toggleItem(item.id)}
+              onNavigate={handleNavigate}
+            />
+          ))}
+        </nav>
 
-          {trialCard(false)}
-        </div>
+        <div className="shrink-0">{trialCard(false)}</div>
       </div>
 
       {accountSection(false)}
@@ -211,15 +212,17 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
   return (
     <>
       <aside
-        className="box-border hidden h-screen shrink-0 flex-col justify-between bg-white shadow-[inset_-1px_0_0_0_var(--border-color)] transition-[width] ease-out lg:sticky lg:top-0 lg:flex"
+        className="box-border hidden h-dvh min-h-0 max-h-dvh shrink-0 flex-col bg-white shadow-[inset_-1px_0_0_0_var(--border-color)] transition-[width] ease-out lg:sticky lg:top-0 lg:flex"
         style={{ width: widthPx }}
       >
-        <div className={`flex flex-col gap-[8px] ${collapsed ? "items-center" : ""}`}>
+        <div
+          className={`flex min-h-0 min-w-0 flex-1 flex-col gap-[8px] overflow-hidden ${collapsed ? "items-center" : ""}`}
+        >
           <div
             className={
               collapsed
-                ? "flex flex-col items-center gap-3 pt-[22px] pb-[22px] px-2"
-                : "flex justify-between items-center pt-[22px] pr-[8px] pb-[22px] pl-[16px]"
+                ? "flex shrink-0 flex-col items-center gap-3 px-2 pt-[22px] pb-[22px]"
+                : "flex shrink-0 justify-between items-center pt-[22px] pr-[8px] pb-[22px] pl-[16px]"
             }
           >
             <Link to="/dashboard" className="flex shrink-0" aria-label="Crono - go to dashboard">
@@ -243,20 +246,23 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
             </button>
           </div>
 
-          <div className={`flex flex-col gap-[16px] ${collapsed ? "items-center" : ""}`}>
-            <nav className={`flex flex-col gap-[16px] ${collapsed ? "items-center px-0" : ""}`}>
-              {sidebarItems.map((item) => (
-                <SidebarItem
-                  key={item.href}
-                  {...item}
-                  collapsed={collapsed}
-                  isExpanded={expandedItem === item.id}
-                  onToggle={() => toggleItem(item.id)}
-                  onNavigate={() => setExpandedItem(null)}
-                />
-              ))}
-            </nav>
+          <nav
+            className={`flex min-h-0 flex-1 flex-col gap-[16px] overflow-y-auto overflow-x-hidden overscroll-y-contain [-webkit-overflow-scrolling:touch] ${collapsed ? "w-full items-center px-0" : "w-full"}`}
+            aria-label="Main navigation"
+          >
+            {sidebarItems.map((item) => (
+              <SidebarItem
+                key={item.href}
+                {...item}
+                collapsed={collapsed}
+                isExpanded={expandedItem === item.id}
+                onToggle={() => toggleItem(item.id)}
+                onNavigate={() => setExpandedItem(null)}
+              />
+            ))}
+          </nav>
 
+          <div className={`w-full shrink-0 ${collapsed ? "flex justify-center" : ""}`}>
             {trialCard(collapsed)}
           </div>
         </div>
