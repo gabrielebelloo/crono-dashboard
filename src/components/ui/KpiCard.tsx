@@ -31,9 +31,9 @@ export default function KpiCard({
   const progressPct = Math.min(max > 0 ? (current / max) * 100 : 0, 100);
 
   return (
-    <div className="box-border flex h-[71px] w-full min-w-0 max-w-full shrink-0 flex-col rounded-[12px] border border-border p-[8px]">
-      <div className="flex shrink-0 items-center justify-between gap-[4px]">
-        <span className="text-kpi-title min-w-0 truncate">{title}</span>
+    <div className="box-border flex h-[72px] w-full min-w-0 max-w-full shrink-0 flex-col rounded-[8px] border border-border p-2">
+      <div className="flex w-full shrink-0 items-center justify-start gap-1">
+        <span className="text-kpi-title min-w-0 flex-1 truncate text-left">{title}</span>
 
         {tooltip && (
           <div className="relative flex shrink-0 items-center">
@@ -68,21 +68,23 @@ export default function KpiCard({
         )}
       </div>
 
-      <div className="mt-[4px] flex h-6 min-h-6 min-w-0 shrink-0 flex-row items-end gap-px">
-        {Icon && (
-          <span className="flex h-6 w-4 shrink-0 items-end justify-center">
+      <div className="mt-1 flex w-full min-w-0 shrink-0 flex-row items-center justify-start gap-1">
+        {Icon ? (
+          <span className="flex h-4 w-4 shrink-0 items-center justify-center">
             <Icon className="block h-4 w-4 shrink-0" style={{ color }} aria-hidden="true" />
           </span>
-        )}
-        <span
-          className="text-kpi-metric min-w-0 shrink translate-y-px leading-6 truncate"
-          style={{ color }}
-        >
-          {prefix}
-          {formatNumber(current, suffix)}
-        </span>
-        <span className="text-kpi-metric-max shrink-0 translate-y-px leading-6 truncate">
-          /{formatNumber(max, suffix)}
+        ) : null}
+        <span className="mt-[3px] inline-flex min-w-0 shrink items-baseline gap-0">
+          <span
+            className="min-w-0 truncate text-left text-kpi-metric leading-6 tabular-nums"
+            style={{ color }}
+          >
+            {prefix}
+            {formatNumber(current, suffix)}
+          </span>
+          <span className="shrink-0 whitespace-nowrap text-kpi-metric-max leading-6 tabular-nums">
+            /{formatNumber(max, suffix)}
+          </span>
         </span>
       </div>
 

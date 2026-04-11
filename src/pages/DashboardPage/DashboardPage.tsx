@@ -22,8 +22,9 @@ export default function DashboardPage() {
   const { signals, complete, remove } = useSignals();
 
   return (
-    <div className="mx-auto w-full min-w-0 max-w-full xl:max-w-[1216px]">
-      <div className="grid w-full min-w-0 auto-rows-min grid-cols-1 gap-2 md:grid-cols-2 md:gap-2 xl:grid-cols-[396px_396px_408px] xl:gap-x-2 xl:gap-y-2 xl:items-start">
+    <div className="ml-0 mr-auto w-full min-w-0 max-w-full xl:max-w-[1216px]">
+      <div className="w-full min-w-0 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:thin] [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-border">
+        <div className="grid w-full min-w-0 auto-rows-min grid-cols-1 gap-2 md:grid-cols-2 md:gap-2 xl:min-w-[1216px] xl:grid-cols-[396px_396px_408px] xl:gap-x-2 xl:gap-y-2 xl:items-start">
         <Card className="md:col-span-1 xl:col-start-1 xl:row-start-1 box-border flex w-full max-w-full flex-col gap-2 !p-0 !py-8 !pl-6 !pr-6 md:min-h-[142px] xl:h-[142px] xl:w-[396px] xl:max-w-[396px] xl:shrink-0">
           <h1 className="min-w-0 w-full text-h1 text-dark">Welcome Alex,</h1>
           <p className="min-w-0 w-full text-b1 text-gray">
@@ -85,14 +86,17 @@ export default function DashboardPage() {
               <Fragment key={item.label}>
                 <TaskCard {...item} onClick={() => navigate("/tasks")} />
                 {idx < taskItems.length - 1 && (
-                  <div className="h-[86px] w-px shrink-0 bg-border" aria-hidden />
+                  <div
+                    className={`h-[86px] w-px shrink-0 ${idx === 1 ? "bg-transparent" : "bg-border"}`}
+                    aria-hidden
+                  />
                 )}
               </Fragment>
             ))}
           </div>
         </Card>
 
-        <div className="contents xl:col-span-3 xl:row-start-3 xl:flex xl:min-h-0 xl:min-w-0 xl:w-full xl:max-w-full xl:flex-row xl:items-stretch xl:gap-2">
+        <div className="contents xl:col-span-3 xl:row-start-3 xl:flex xl:min-h-0 xl:min-w-0 xl:w-full xl:max-w-full xl:flex-row xl:flex-wrap xl:items-start xl:justify-start xl:gap-2">
           <Card
             headerTitle="Signals"
             headerCounter={signals.length}
@@ -102,7 +106,7 @@ export default function DashboardPage() {
                 LinkedIn connections.
               </p>
             }
-            className="md:col-span-2 box-border flex w-full min-w-0 flex-col gap-[12px] overflow-hidden max-xl:max-h-[min(60vh,520px)] max-xl:flex-1 xl:h-[412px] xl:min-h-[412px] xl:max-h-[412px] xl:max-w-[800px] xl:min-w-0 xl:flex-1 xl:!p-0 xl:!pb-0 xl:!pt-4"
+            className="md:col-span-2 box-border flex w-full min-w-0 flex-col gap-[12px] overflow-hidden max-xl:max-h-[min(60vh,520px)] max-xl:flex-1 xl:h-[412px] xl:min-h-[412px] xl:max-h-[412px] xl:max-w-[800px] xl:min-w-0 xl:flex-1 xl:self-start xl:!p-0 xl:!pb-0 xl:!pt-4"
           >
             <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-4 overflow-y-auto pr-1">
               {signals.map((signal, idx) => (
@@ -123,7 +127,7 @@ export default function DashboardPage() {
 
           <Card
             headerTitle="Onboarding"
-            className="md:col-span-2 box-border flex w-full min-w-0 flex-col overflow-hidden max-xl:max-h-[min(60vh,520px)] max-xl:flex-1 xl:h-[412px] xl:min-h-[412px] xl:max-h-[412px] xl:w-[408px] xl:max-w-[408px] xl:shrink-0"
+            className="md:col-span-2 box-border flex w-full min-w-0 flex-col overflow-hidden max-xl:max-h-[min(60vh,520px)] max-xl:flex-1 xl:h-[412px] xl:min-h-[412px] xl:max-h-[412px] xl:w-[408px] xl:max-w-[408px] xl:shrink-0 xl:self-start"
           >
             <div className="flex min-h-0 min-w-0 w-full flex-1 flex-col items-stretch gap-4 overflow-y-auto pr-1">
               {onboardingItems.map((item, idx) => (
@@ -136,6 +140,7 @@ export default function DashboardPage() {
               ))}
             </div>
           </Card>
+        </div>
         </div>
       </div>
     </div>

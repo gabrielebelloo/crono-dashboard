@@ -100,10 +100,10 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
 
           {open && (
             <div
-              className="absolute left-1/2 top-full z-30 mt-2 box-border flex w-[min(100vw-2rem,216px)] -translate-x-1/2 flex-col items-start gap-[10px] rounded-[16px] border border-border bg-white p-2 shadow-[0_4px_8px_rgba(0,0,0,0.1)] sm:left-auto sm:right-0 sm:translate-x-0 sm:w-[216px]"
+              className="absolute left-1/2 top-full z-30 mt-2 box-border flex h-[96px] w-[min(100vw-2rem,216px)] -translate-x-1/2 flex-col items-start gap-[10px] rounded-[16px] border border-border bg-white p-2 shadow-[0_4px_8px_rgba(0,0,0,0.1)] sm:left-auto sm:right-0 sm:h-[96px] sm:w-[216px] sm:translate-x-0"
               role="menu"
             >
-              <div className="flex w-full flex-col items-center gap-1">
+              <div className="flex h-[80px] w-full flex-col items-center gap-0 self-stretch">
                 <button
                   type="button"
                   role="menuitem"
@@ -111,7 +111,7 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
                     onComplete(signal.id);
                     setOpen(false);
                   }}
-                  className="box-border flex h-10 w-full cursor-pointer flex-row items-center gap-2 rounded-lg !bg-[var(--light-color)] px-2 py-2 text-left transition-colors duration-150 hover:!bg-[var(--hover-color)] active:opacity-90"
+                  className="box-border flex h-10 w-full min-w-0 cursor-pointer flex-row items-center gap-[8px] rounded-lg bg-transparent p-2 text-left transition-colors duration-150 hover:!bg-[var(--hover-color)] active:opacity-90"
                 >
                   <span className="min-w-0 flex-1 text-b3 leading-4 text-secondary">Complete</span>
                   <CheckmarkIcon className="h-6 w-6 shrink-0 text-secondary" aria-hidden="true" />
@@ -124,7 +124,7 @@ export default function SignalItem({ signal, onComplete, onDelete }: Props) {
                     onDelete(signal.id);
                     setOpen(false);
                   }}
-                  className="box-border flex h-10 w-full cursor-pointer flex-row items-center gap-2 rounded-lg bg-transparent px-2 py-2 text-left transition-colors duration-150 hover:!bg-[var(--hover-color)] active:opacity-90"
+                  className="box-border flex h-10 w-full min-w-0 cursor-pointer flex-row items-center gap-[8px] rounded-lg bg-transparent p-2 text-left transition-colors duration-150 hover:!bg-[var(--hover-color)] active:opacity-90"
                 >
                   <span className="min-w-0 flex-1 text-b3 leading-4 text-dark">Delete</span>
                   <RemoveIcon className="h-6 w-6 shrink-0 text-dark" aria-hidden="true" />
