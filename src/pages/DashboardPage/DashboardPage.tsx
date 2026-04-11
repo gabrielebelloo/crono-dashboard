@@ -116,7 +116,7 @@ export default function DashboardPage() {
             }
             className="md:col-span-2 box-border flex w-full min-w-0 flex-col gap-[12px] overflow-hidden max-xl:max-h-[min(60vh,520px)] max-xl:flex-1 xl:h-[412px] xl:min-h-[412px] xl:max-h-[412px] xl:max-w-[800px] xl:min-w-0 xl:flex-1 xl:self-start xl:!p-0 xl:!pb-0 xl:!pt-4"
           >
-            <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-4 overflow-y-auto pr-1">
+            <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-4 overflow-y-auto pb-4 pr-1">
               {signals.map((signal, idx) => (
                 <Fragment key={signal.id}>
                   <SignalItem signal={signal} onComplete={complete} onDelete={remove} />
