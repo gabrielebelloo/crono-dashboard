@@ -35,7 +35,7 @@ export default function TaskCard({
     <button
       type="button"
       onClick={onClick}
-      className={`relative box-border flex h-[86px] w-[181.5px] min-w-[181.5px] shrink-0 flex-col items-stretch overflow-hidden rounded-[12.2105px] border-0 p-4 text-left outline-none transition-opacity duration-150 hover:opacity-90 focus-visible:ring-2 focus-visible:ring-gray/30 focus-visible:ring-offset-2 xl:min-w-0 xl:w-full xl:max-w-full ${isPendingAuto ? "isolate" : ""} ${bg} ${className}`}
+      className={`relative box-border flex h-[86px] min-w-0 w-full max-w-full shrink-0 flex-col items-stretch overflow-hidden rounded-[12.2105px] border-0 p-4 text-left outline-none transition-opacity duration-150 hover:opacity-90 focus-visible:ring-2 focus-visible:ring-gray/30 focus-visible:ring-offset-2 ${isPendingAuto ? "isolate" : ""} ${bg} ${className}`}
     >
       {errorCount != null && errorCount > 0 && (
         <div
@@ -55,7 +55,7 @@ export default function TaskCard({
       )}
 
       <div
-        className={`mr-auto flex h-full w-full max-w-[149.5px] flex-col items-stretch justify-between${isPendingAuto ? " gap-px" : ""}`}
+        className={`flex h-full w-full min-w-0 max-w-full flex-col items-stretch justify-between artboard:mr-auto artboard:max-w-[149.5px]${isPendingAuto ? " gap-px" : ""}`}
       >
         <span
           className={`flex h-[30px] w-full min-w-0 shrink-0 items-center text-left text-task-count ${countTone}`}
@@ -64,7 +64,7 @@ export default function TaskCard({
         </span>
 
         <div
-          className={`mx-auto flex h-4 w-full max-w-[149.5px] min-w-0 flex-row items-center ${showArrow ? "" : "justify-start"}`}
+          className={`flex h-4 w-full min-w-0 max-w-full flex-row items-center artboard:mx-auto artboard:max-w-[149.5px] ${showArrow ? "" : "justify-start"}`}
         >
           <span className="text-task-label min-w-0 flex-1 truncate text-left">{label}</span>
           {showArrow && (

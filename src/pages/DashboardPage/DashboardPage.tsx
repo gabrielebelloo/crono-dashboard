@@ -79,9 +79,9 @@ export default function DashboardPage() {
 
         <Card
           headerTitle="Today's tasks"
-          className="md:col-span-2 xl:col-span-2 xl:col-start-1 xl:row-start-2 box-border flex h-auto min-h-0 w-full max-w-full flex-col items-start overflow-hidden xl:h-[148px] xl:min-h-[148px] xl:w-[800px] xl:max-w-[800px] xl:shrink-0"
+          className="md:col-span-2 xl:col-span-2 xl:col-start-1 xl:row-start-2 box-border flex h-auto min-h-0 w-full min-w-0 max-w-full flex-col items-start overflow-hidden xl:h-[148px] xl:min-h-[148px] artboard:w-[800px] artboard:max-w-[800px] artboard:shrink-0"
         >
-          <div className="box-border flex min-h-[86px] w-full min-w-0 shrink-0 flex-row items-center gap-2 overflow-x-auto overflow-y-hidden [-webkit-overflow-scrolling:touch] xl:grid xl:h-[86px] xl:w-[768px] xl:max-w-[768px] xl:grid-cols-[181.5px_1px_181.5px_1px_181.5px_1px_181.5px] xl:gap-0 xl:gap-x-[6.5px] xl:overflow-x-hidden">
+          <div className="box-border grid min-h-[86px] h-[86px] w-full min-w-0 shrink-0 grid-cols-[minmax(0,1fr)_1px_minmax(0,1fr)_1px_minmax(0,1fr)_1px_minmax(0,1fr)] gap-0 gap-x-[6.5px] overflow-x-hidden overflow-y-hidden [-webkit-overflow-scrolling:touch] artboard:w-[768px] artboard:max-w-[768px] artboard:grid-cols-[181.5px_1px_181.5px_1px_181.5px_1px_181.5px]">
             {taskItems.map((item, idx) => (
               <Fragment key={item.label}>
                 <TaskCard {...item} onClick={() => navigate("/tasks")} />
