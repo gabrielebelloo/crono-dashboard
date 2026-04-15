@@ -1,6 +1,6 @@
 # Dashboard UI (React + TypeScript + Tailwind)
 
-**Live demo:** `https://crono-dashboard.vercel.app/`
+**Live demo:** [crono-dashboard.vercel.app](https://crono-dashboard.vercel.app/)
 
 This is a pixel-focused dashboard UI built in React/TypeScript. It’s designed to showcase UI implementation accuracy (spacing/typography/colors), reusable components, and a small interactive flow.
 
