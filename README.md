@@ -1,8 +1,8 @@
-# Crono Dashboard
+# Dashboard UI (React + TypeScript + Tailwind)
 
-**Live demo:** https://crono-dashboard.vercel.app/
+**Live demo:** `https://crono-dashboard.vercel.app/`
 
-**Figma:** [Crono Dashboard - Test Task](https://www.figma.com/design/9stjTEFTCNpLiHePX2GYOk/Crono-dashboard---test-task?node-id=0-1&p=f&t=S2otFApGVSzl9t3G-0)
+This is a pixel-focused dashboard UI built in React/TypeScript. It’s designed to showcase UI implementation accuracy (spacing/typography/colors), reusable components, and a small interactive flow.
 
 ## Stack
 
@@ -21,6 +21,11 @@ npm run dev
 
 `npm run build` for production, `npm run preview` to serve it.
 
+## Features
+
+- **Dashboard layout**: welcome, replies, KPI tiles, tasks summary, signals list, onboarding checklist, sidebar navigation
+- **Signals interaction**: clicking **Action** opens a popover with **Complete** and **Delete**; selecting either removes the signal and updates the unread counter
+
 ## Structure
 
 ```
@@ -36,14 +41,6 @@ src/
 └── types/           # Signal, SidebarItemType
 ```
 
-## What's implemented
-
-The full dashboard screen from Figma: welcome card, replies card, 6 KPI cards with progress bars and tooltips, 4 task cards, the onboarding checklist, and a collapsible sidebar with active state indicators and a trial CTA.
-
-The **Signals** section is the interactive part. Clicking "Action" opens a popover where you can Complete or Delete a signal, which updates the counter and removes the item from the list. State resets on refresh so you can test it multiple times.
-
-The layout is **fully responsive**: on mobile the sidebar turns into a hamburger-triggered overlay, the card grid stacks to single column, and task cards wrap into a 2x2 grid. On tablet it shifts to a 2-column layout before reaching the full 12-column Figma layout on desktop.
-
 ## Approach
 
 No UI library, just Tailwind utility classes and custom components. Each card section pulls from a typed data array in `src/data/` and renders through a reusable component, keeping the page component clean.
@@ -55,6 +52,10 @@ SVGs are imported as React components via svgr with `currentColor` strokes, so t
 For signals I went with a simple `useState` hook, no localStorage or persistence. The data resets on refresh, which is more practical for a demo that gets tested repeatedly.
 
 Non-dashboard routes show a placeholder page. The sidebar navigation is wired up with React Router.
+
+## Note
+
+This repository is shared as a **portfolio project**. It contains only original implementation code and generic UI assets used for demonstration. If you’re reviewing this as part of an interview process and need the original design reference, I can share it privately.
 
 ## Scalability
 

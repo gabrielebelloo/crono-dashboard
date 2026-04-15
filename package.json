@@ -2,7 +2,7 @@
   "name": "crono-dashboard",
   "private": true,
   "version": "1.0.0",
-  "description": "Crono sales dashboard - frontend assignment",
+  "description": "Dashboard UI (React + TypeScript + Tailwind)",
   "author": "Gabriele Bello",
   "type": "module",
   "scripts": {

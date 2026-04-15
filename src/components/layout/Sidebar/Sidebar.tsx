@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import type { SidebarItemType } from "../../../types/sidebarItem";
 import SidebarItem from "./SidebarItem";
-import CronoLogo from "../../../assets/branding/crono-logo-transparent.svg?react";
-import CronoLogoMark from "../../../assets/branding/crono-logo-mark.svg?react";
+import CompanyLogo from "../../../assets/branding/crono-logo-transparent.svg?react";
+import CompanyLogoMark from "../../../assets/branding/crono-logo-mark.svg?react";
 import ArrowForwardIcon from "../../../assets/icons/arrow-forward.svg?react";
 import GiftIcon from "../../../assets/icons/gift-icon.svg?react";
 import cloudPng from "../../../assets/branding/cloud.png";
@@ -171,9 +171,9 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
             to="/dashboard"
             className="flex shrink-0"
             onClick={onClose}
-            aria-label="Crono - go to dashboard"
+            aria-label="Go to dashboard"
           >
-            <CronoLogo className="h-[28px] w-auto max-w-[120px]" aria-hidden />
+            <CompanyLogo className="h-[28px] w-auto max-w-[120px]" aria-hidden />
           </Link>
           <button
             type="button"
@@ -237,11 +237,11 @@ export default function Sidebar({ mobileOpen, onClose }: Props) {
                 : "flex shrink-0 justify-between items-center pt-[22px] pr-[8px] pb-[22px] pl-[16px]"
             }
           >
-            <Link to="/dashboard" className="flex shrink-0" aria-label="Crono - go to dashboard">
+            <Link to="/dashboard" className="flex shrink-0" aria-label="Go to dashboard">
               {collapsed ? (
-                <CronoLogoMark className="h-7 w-7 text-main" aria-hidden />
+                <CompanyLogoMark className="h-7 w-7 text-main" aria-hidden />
               ) : (
-                <CronoLogo className="h-[28px] w-auto max-w-[120px]" aria-hidden />
+                <CompanyLogo className="h-[28px] w-auto max-w-[120px]" aria-hidden />
               )}
             </Link>
             <button

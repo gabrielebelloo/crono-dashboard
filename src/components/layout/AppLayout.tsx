@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar/Sidebar";
-import CronoLogo from "../../assets/branding/crono-logo-transparent.svg?react";
+import CompanyLogo from "../../assets/branding/crono-logo-transparent.svg?react";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -9,8 +9,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen min-w-0 lg:items-start">
       <header className="fixed top-0 left-0 right-0 z-30 flex h-14 items-center justify-between border-b border-border bg-white px-4 lg:hidden">
-        <Link to="/dashboard" className="flex shrink-0" aria-label="Crono - go to dashboard">
-          <CronoLogo className="h-6 w-auto" aria-hidden />
+        <Link to="/dashboard" className="flex shrink-0" aria-label="Go to dashboard">
+          <CompanyLogo className="h-6 w-auto" aria-hidden />
         </Link>
         <button
           type="button"
